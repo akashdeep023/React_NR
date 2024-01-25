@@ -1,0 +1,25 @@
+{
+  "name": "basic_react",
+  "version": "1.0.0",
+  "description": "\"Basic react app\"",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html",
+    "test": "jest"
+  },
+  "author": "Akash deep",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/core": "^7.23.7",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "parcel": "^2.11.0",
+    "process": "^0.11.10"
+  },
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "browserslist": [
+    "last 10 Chrome versions"
+  ]
+}
