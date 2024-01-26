@@ -1,4 +1,4 @@
-import { IMG_URL } from "../../constant";
+import { IMG_URL } from "../constant";
 // Restaurant card component: Image, name, cuisine
 const RestaurantCard = (restaurantList) => {
 	const { name, cuisines, cloudinaryImageId, avgRating } = restaurantList;

@@ -1,3 +1,5 @@
+import { useState } from "react";
+
 const Title = () => {
 	return (
 		<a href="/">
@@ -10,8 +12,10 @@ const Title = () => {
 	);
 };
 const Header = () => {
+	const [isLogin, setIsLogin] = useState(false);
 	return (
 		// <> == React.Fragment
+		<>
 		<div className="header">
 			<Title />
 			<ul className="nav-items">
@@ -19,7 +23,28 @@ const Header = () => {
 				<li>About</li>
 				<li>Contact</li>
 			</ul>
-		</div>
+			{isLogin ? (
+				<button
+				id="login"
+					onClick={() => {
+						setIsLogin(false);
+					}}
+				>
+					Login
+				</button>
+			) : (
+				<button
+				id="login"
+					onClick={() => {
+						setIsLogin(true);
+					}}
+				>
+					Logout
+				</button>
+			)}
+			</div>
+			<div id="header-margin"></div>
+			</>
 	);
 };
 export default Header;

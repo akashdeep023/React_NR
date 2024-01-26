@@ -4,6 +4,9 @@ import Header from "./components/Header";
 import Body from "./components/Body";
 import Footer from "./components/Footer";
 
+// import abc from "abc"; => default import abc = exports default abc;
+// import {xyz} from "xyz"; => name import xyz = export const xyz = "xyz";
+
 const AppLayout = () => {
 	return (
 		<>
