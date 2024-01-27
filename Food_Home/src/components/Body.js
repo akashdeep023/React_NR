@@ -3,6 +3,7 @@ import RestaurantCard from "./Restaurant";
 import RestaurantList from "../constant";
 import { useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
+import { Link } from "react-router-dom";
 
 const findRestaurants = (search, restaurants) => {
 	const data = restaurants.filter((restaurant) => {
@@ -16,7 +17,7 @@ const findRestaurants = (search, restaurants) => {
 const Body = () => {
 	const [searchText, setSearchText] = useState("");
 	const [allRestaurants, setAllRestaurants] = useState([]);
-	const [filteredRestaurants, setFilteredRestaurants] = useState();
+	const [filteredRestaurants, setFilteredRestaurants] = useState(null);
 	console.log("Render()1"); //Change state (useState) than re rendering
 
 	// useEffect render after rendering components (1st render component then render useEffect)
@@ -38,11 +39,11 @@ const Body = () => {
 		// console.log(json)
 		// Optional Chaining '?'
 		setAllRestaurants(
-			json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+			json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
 				?.restaurants
 		);
 		setFilteredRestaurants(
-			json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+			json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
 				?.restaurants
 		);
 	};
@@ -50,11 +51,13 @@ const Body = () => {
 	if (!allRestaurants) return null;
 
 	if (filteredRestaurants?.length == 0) {
-		return <h1 className="main-card">No Restaurant search your match !!</h1>;
+		return (
+			<h1 className="main-card">No Restaurant search your match !!</h1>
+		);
 	}
 
 	return allRestaurants?.length == 0 ? (
-	    <Shimmer />
+		<Shimmer />
 	) : (
 		<>
 			<div id="search-container">
@@ -83,10 +86,12 @@ const Body = () => {
 			<div className="main-card">
 				{filteredRestaurants.map((restaurant) => {
 					return (
-						<RestaurantCard
-							{...restaurant.info}
+						<Link
+							to={"/restaurant/" + restaurant.info.id}
 							key={restaurant.info.id}
-						/>
+						>
+							<RestaurantCard {...restaurant.info} />
+						</Link>
 					);
 				})}
 			</div>

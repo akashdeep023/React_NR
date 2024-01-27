@@ -1,13 +1,11 @@
 import { useState } from "react";
+import logo from "../assets/img/foodvilla.png";
+import { Link } from "react-router-dom";
 
 const Title = () => {
 	return (
 		<a href="/">
-			<img
-				className="logo"
-				alt="logo"
-				src="https://img.freepik.com/free-vector/food-house-logo-template-design_460848-17086.jpg?w=826&t=st=1705943466~exp=1705944066~hmac=41e5d9489a2ce1827a485b789385e4333e727460504681f1488b802dd2a157a3"
-			/>
+			<img className="logo" alt="logo" src={logo} />
 		</a>
 	);
 };
@@ -16,35 +14,44 @@ const Header = () => {
 	return (
 		// <> == React.Fragment
 		<>
-		<div className="header">
-			<Title />
-			<ul className="nav-items">
-				<li>Home</li>
-				<li>About</li>
-				<li>Contact</li>
-			</ul>
-			{isLogin ? (
-				<button
-				id="login"
-					onClick={() => {
-						setIsLogin(false);
-					}}
-				>
-					Login
-				</button>
-			) : (
-				<button
-				id="login"
-					onClick={() => {
-						setIsLogin(true);
-					}}
-				>
-					Logout
-				</button>
-			)}
+			<div className="header">
+				<Title />
+				<ul className="nav-items">
+					<li>
+						<Link to="/">Home</Link>
+					</li>
+					<li>
+						<Link to="/about">About</Link>
+					</li>
+					<li>
+						<Link to="/contact">Contact</Link>
+					</li>
+					<li>
+						<Link to="cart">Cart</Link>
+					</li>
+				</ul>
+				{isLogin ? (
+					<button
+						id="login"
+						onClick={() => {
+							setIsLogin(false);
+						}}
+					>
+						Login
+					</button>
+				) : (
+					<button
+						id="login"
+						onClick={() => {
+							setIsLogin(true);
+						}}
+					>
+						Logout
+					</button>
+				)}
 			</div>
 			<div id="header-margin"></div>
-			</>
+		</>
 	);
 };
 export default Header;
