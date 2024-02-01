@@ -1,6 +1,7 @@
 import { useState } from "react";
 import logo from "../assets/img/foodvilla.png";
 import { Link } from "react-router-dom";
+import useOnline from "../utils/useOnline";
 
 const Title = () => {
 	return (
@@ -11,6 +12,7 @@ const Title = () => {
 };
 const Header = () => {
 	const [isLogin, setIsLogin] = useState(false);
+	const isOnline = useOnline();
 	return (
 		// <> == React.Fragment
 		<>
@@ -37,7 +39,7 @@ const Header = () => {
 							setIsLogin(false);
 						}}
 					>
-						Login
+						{isOnline ? "🟢" : "🔴"} Login
 					</button>
 				) : (
 					<button
@@ -46,7 +48,7 @@ const Header = () => {
 							setIsLogin(true);
 						}}
 					>
-						Logout
+						{isOnline ? "🟢" : "🔴"} Logout
 					</button>
 				)}
 			</div>

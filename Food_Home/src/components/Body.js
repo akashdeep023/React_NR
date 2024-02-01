@@ -1,100 +1,56 @@
-import RestaurantCard from "./Restaurant";
+import RestaurantCard from "./RestaurantCard";
 // import RestaurantList from "../constant";
-import RestaurantList from "../constant";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
-
-const findRestaurants = (search, restaurants) => {
-	const data = restaurants.filter((restaurant) => {
-		return restaurant.info.name
-			.toLowerCase()
-			.includes(search.toLowerCase());
-	});
-	return data;
-};
+import useAllRestaurants from "../utils/useAllRestaurants";
+import Search from "./Search";
+import useOnline from "../utils/useOnline";
 
 const Body = () => {
+	const [allRestaurants, filteredRestaurants, setFilteredRestaurants] =
+		useAllRestaurants();
 	const [searchText, setSearchText] = useState("");
-	const [allRestaurants, setAllRestaurants] = useState([]);
-	const [filteredRestaurants, setFilteredRestaurants] = useState(null);
-	console.log("Render()1"); //Change state (useState) than re rendering
-
-	// useEffect render after rendering components (1st render component then render useEffect)
-	// empty dependency array => once after render
-	// dep array [searchText] => once after initial render + everytime after render (my searchText changes)
-	useEffect(() => {
-		console.log("useEffect()2");
-		// API call
-		getRestaurants();
-	}, []);
-
-	console.log("Render()2"); //Change state (useState) than re rendering
-
-	const getRestaurants = async function () {
-		const data = await fetch(
-			"https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.5940947&lng=85.1375645&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING"
-		);
-		const json = await data.json();
-		// console.log(json)
-		// Optional Chaining '?'
-		setAllRestaurants(
-			json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-				?.restaurants
-		);
-		setFilteredRestaurants(
-			json?.data?.cards[2]?.card?.card?.gridElements?.infoWithStyle
-				?.restaurants
-		);
+	const giveSearchText = (data) => {
+		setSearchText(data);
 	};
 
-	if (!allRestaurants) return null;
-
-	if (filteredRestaurants?.length == 0) {
+	const isOnline = useOnline();
+	if (!isOnline) {
 		return (
-			<h1 className="main-card">No Restaurant search your match !!</h1>
-		);
+			<h1 className="body-box">User was Offline ....</h1>
+		)
 	}
+	if (!allRestaurants)
+		return <div className="body-box">Data is not Loaded.......!</div>;
 
 	return allRestaurants?.length == 0 ? (
 		<Shimmer />
 	) : (
 		<>
-			<div id="search-container">
-				<input
-					type="text"
-					placeholder="Search Restaurant"
-					value={searchText}
-					onChange={(e) => {
-						console.log(e.target.value);
-						setSearchText(e.target.value);
-					}}
-				/>
-				<button
-					onClick={() => {
-						const data = findRestaurants(
-							searchText,
-							allRestaurants
+			<Search
+				allRestaurants={allRestaurants}
+				setFilteredRestaurants={setFilteredRestaurants}
+				giveSearchText={giveSearchText}
+			/>
+			{filteredRestaurants?.length != 0 ? (
+				<div className="main-card body-box">
+					{filteredRestaurants.map((restaurant) => {
+						return (
+							<Link
+								to={"/restaurant/" + restaurant.info.id}
+								key={restaurant.info.id}
+							>
+								<RestaurantCard {...restaurant.info} />
+							</Link>
 						);
-						setFilteredRestaurants(data);
-						setSearchText("");
-					}}
-				>
-					Search
-				</button>
-			</div>
-			<div className="main-card">
-				{filteredRestaurants.map((restaurant) => {
-					return (
-						<Link
-							to={"/restaurant/" + restaurant.info.id}
-							key={restaurant.info.id}
-						>
-							<RestaurantCard {...restaurant.info} />
-						</Link>
-					);
-				})}
-			</div>
+					})}
+				</div>
+			) : (
+				<div className="body-box search-empty">
+					No Restaurant search your match !! "{searchText}"
+				</div>
+			)}
 		</>
 	);
 };

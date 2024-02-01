@@ -1,7 +1,10 @@
 const Cart = () => {
     return (
-        <div>
+        <div className="body-box">
             <h1>Cart</h1>
+            <div>
+                <h3>100+ components in card...</h3>
+            </div>
         </div>
     )
 }
