@@ -32,7 +32,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Profile from "./components/Profile";
-import ProfileClass from "./components/ProfileClass";
+// import ProfileClass from "./components/ProfileClass";
 
 const Cart = lazy(() => import("./components/Cart"));
 // Chunking
