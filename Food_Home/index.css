@@ -77,19 +77,19 @@
     display: flex;
     flex-direction: column;
     justify-content: start;
-    gap: 5px;
+    gap: 2px;
     align-items: start;
     width: 250px;
-    height: 290px;
+    height: 280px;
     background-color: #ffffff;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-    padding: 15px;
+    /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+    padding: 13px; */
     transition: all cubic-bezier(0.215, 0.610, 0.355, 1) 200ms;
 }
 
 .card:hover {
-    transform: scale(.96);
+    transform: scale(.93);
 }
 
 .card:nth-child(1) {
@@ -104,16 +104,64 @@
     letter-spacing: -0.3px;
 }
 
-.card-head-hover:hover {
-    display: block;
+.card > .img-box {
+    width: 100%;
+    height: 170px;
+    object-fit: cover;
+    border-radius: 15px;
+    object-position: center;
+    position: relative;
+    overflow: hidden;
 }
 
-.card > img {
+.card .img {
     width: 100%;
-    height: 140px;
+    height: 100%;
     object-fit: cover;
-    border-radius: 5px;
+    /* border-radius: 15px; */
     object-position: center;
+}
+
+.card-offer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    height: 80px;
+    background: linear-gradient(rgba(27, 30, 36, 0) 0%, rgb(27, 30, 36) 84.21%);
+    display: flex;
+    align-items: end;
+}
+
+.card-offer h3 {
+    font-size: 21px;
+    font-weight: 800;
+    color: #ffffff;
+    margin: 5px 10px;
+}
+
+.card h4 span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 21px;
+    height: 20px;
+    background-color: green;
+    border-radius: 50px;
+    margin-right: 5px;
+}
+
+.card h4 {
+    display: flex;
+    align-items: center;
+}
+
+.card h4 i {
+    color: white;
+    font-size: 10px;
+}
+
+.card p {
+    line-height: 19px;
 }
 
 .body-box {
@@ -250,7 +298,7 @@
 
 #res-menu-name > div:last-child {
     height: 70px;
-    width: 80px;
+    width: 70px;
     display: flex;
     flex-direction: column;
     gap: 5px;
@@ -273,7 +321,11 @@
 }
 
 #res-menu-name .rating {
-    color: rgb(3, 158, 3);
+    color: rgb(28, 130, 28);
+}
+
+#res-menu-name .rating i {
+    margin-right: 2px !important;
 }
 
 #res-menu-name .rating-tot {
@@ -286,9 +338,20 @@
     justify-content: space-b
 }
 
+#res-menu-price h4 i:last-child {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 12px;
+    height: 19px;
+    width: 19px;
+    border: 2px solid #000;
+    border-radius: 50px;
+}
+
 #res-menu-img {
     width: 300px;
-    height: 250px;
+    height: 190px;
     object-fit: cover;
     border-radius: 10px;
     border: .5px solid #dadada;
@@ -308,7 +371,9 @@
 }
 
 #res-menu-offbox {
-    min-width: 215px;
+    display: flex;
+    justify-content: start;
+    min-width: 220px;
     min-height: 60px;
     border-radius: 5px;
     border: 1px solid #aaaaaa;
@@ -316,11 +381,46 @@
     box-shadow: 0px 0px 1px #00000036;
     padding: 10px;
     margin: 5px 0px;
+    position: relative;
 }
 
-#res-menu-offbox > div {
+.res-menu-flat {
+    text-transform: uppercase;
+    font-weight: 600;
+    font-size: 10px;
+    width: 30px;
+    height: 100%;
+    color: rgb(217, 17, 17);
+    white-space: nowrap;
+    letter-spacing: -0.6px;
+    position: absolute;
+    transform-origin: 10px;
+    padding: 10px 3px;
+    transform-origin: 15px;
+    transform: rotate(-90deg);
+}
+
+.res-menu-flath {
+    width: 15px;
+    margin-right: 5px;
+    border-right: 1px solid #dadada;
+}
+
+#res-menu-offbox h4 {
     display: flex;
-    font-size: 13px;
+    align-items: center;
+    gap: 5px;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: -0.3px;
+    opacity: .9;
+}
+
+#res-menu-offbox > div h5 {
+    white-space: 3px;
+    font-size: 10px;
+    margin-top: 3px;
+    letter-spacing: -0.3px;
     opacity: .6;
 }
 
@@ -357,13 +457,20 @@
     border-radius: 10px;
 }
 
-#res-menu-cardele .menu-img {
-    width: 120px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 5px;
-    margin-bottom: 5px;
-    margin-left: 20px;
+#res-menu-cardele p {
+    font-size: 14px;
+}
+
+#res-menu-cardele h5 {
+    opacity: .85;
+}
+
+#item-veg {
+    color: green;
+}
+
+#item-nonveg {
+    color: red;
 }
 
 #res-menu-cardele p:last-child {
@@ -373,27 +480,79 @@
     scroll-snap-stop: always;
     scroll-snap-align: start;
     scroll-behavior: smooth;
+    /* opacity: .5; */
+    color: grey;
+    font-size: 12px;
+}
+
+#res-menu-cardele p:last-child:hover {
+    display: block;
+}
+
+.menu-img-box {
+    position: relative;
+    height: 100px;
+    width: 120px !important;
+}
+
+#res-menu-cardele .menu-img {
+    width: 120px !important;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+
+#item-add {
+    height: 30px;
+    width: 70px;
+    border-radius: 5px;
+    border: 2px solid #ffffff;
+    box-shadow: 0px 0px 5px #000;
+    background-color: #fff;
+    color: green;
+    font-size: 14px;
+    font-weight: 700;
+    position: absolute;
+    bottom: -5px;
+    right: 20%;
 }
 
 /* -------------------------- */
 
 /* ----------Shimmer-------------- */
+.search-box-shimmer {
+    display: flex;
+    justify-content: center;
+}
+
 .search-shimmer {
-    height: 20px;
+    height: 42px;
+    width: 370px;
+    border-radius: 5px;
+    background: linear-gradient(to right, white, lightgrey, white, lightgrey, white);
+    animation: shimmer 3s linear infinite;
+    background-size: 200% 100%;
+
 }
 
 .img-shimmer {
-    background: #bcbcbc;
+    /* background: #bcbcbc; */
+    background: linear-gradient(to right, white, lightgrey, white);
     width: 100%;
     height: 48%;
     border-radius: 5px;
+    animation: shimmer 3s linear infinite;
+    background-size: 200% 100%;
 }
 
 .box-shimmer {
-    background: #bcbcbc;
+    background: linear-gradient(to right, white, rgb(225, 225, 225), white, rgb(223, 223, 223), white);
     width: 100%;
     height: 6%;
     border-radius: 4px;
+    background-size: 200% 100%;
+    animation: shimmer 3s linear infinite;
 }
 
 .big-shimmer {
@@ -402,19 +561,38 @@
     width: 100%;
 }
 
+.shimmer div:nth-child(3) {
+    width: 50%;
+}
+
+.shimmer div:nth-child(4) {
+    width: 70%;
+}
+
+.shimmer div:nth-child(5) {
+    width: 90%;
+}
+
 /* ------------Shimmer Menu---------- */
 .shimmer-menu > div > div {
     width: 250px;
     height: 10px;
-    background: #dadada;
+    background: linear-gradient(to right, white, rgb(225, 225, 225), white, rgb(223, 223, 223), white);
+    animation: shimmer 3s linear infinite;
+    background-size: 200% 100%;
+
 }
 
 .shimmer-box-menu {
-    background-color: #dadada;
+    background: linear-gradient(to right, white, rgb(225, 225, 225), white, rgb(223, 223, 223), white);
+    animation: shimmer 3s linear infinite;
+    background-size: 200% 100%;
 }
 
 #res-menu-cardele div > .shimmer-box-menu {
-    background-color: #dadada;
+    background: linear-gradient(to right, white, rgb(225, 225, 225), white, rgb(223, 223, 223), white);
+    animation: shimmer 3s linear infinite;
+    background-size: 200% 100%;
     height: 15px;
     margin: 5px;
 }
@@ -423,16 +601,43 @@
     width: 100%;
 }
 
+#res-menu-cardele > div > div:nth-child(1) {
+    width: 50%;
+}
+
+#res-menu-cardele > div > div:nth-child(2) {
+    width: 70%;
+}
+
+#res-menu-cardele > div > div:nth-child(3) {
+    width: 100%;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -200% 0;
+    }
+
+    100% {
+        background-position: 200% 0;
+    }
+}
+
 /* --------------------------- */
 @media (max-width: 767px) {
-    #res-menu-box,#res-menu-cardbox,#res-menu-off
-    {
+
+    #res-menu-box,
+    #res-menu-cardbox,
+    #res-menu-off {
         width: 90%;
     }
 }
+
 @media (max-width: 424px) {
-    #res-menu-box,#res-menu-cardbox,#res-menu-off
-    {
+
+    #res-menu-box,
+    #res-menu-cardbox,
+    #res-menu-off {
         width: 100%;
     }
 }
