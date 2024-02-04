@@ -1,0 +1,25 @@
+/*
+Normal Native CSS
+SCSS
+Inline CSS
+Component Libraries - Material UI, Base UI , Ant , Chakra
+Style Components
+
+Tailwind CSS Framework
+    - CSS on the go(in the same file)
+    - Resubility
+    - Less Bundle Size
+    - Flexibility UI (Customizations)
+*/
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.card-head {
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    letter-spacing: -0.3px;
+}
