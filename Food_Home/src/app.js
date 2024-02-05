@@ -20,7 +20,7 @@
 
 // import abc from "abc"; => default import abc = exports default abc;
 // import {xyz} from "xyz"; => name import xyz = export const xyz = "xyz";
-import React, { Suspense, lazy } from "react";
+import React, { Suspense, lazy, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Header from "./components/Header";
 import Body from "./components/Body";
@@ -43,14 +43,21 @@ const Cart = lazy(() => import("./components/Cart"));
 // On Demand Loading
 // Dynamic Import
 
-// useContext ----------------------------------------------------------------
+import UserContext from "./utils/UserContext";
 
 const AppLayout = () => {
+	// useContext ----------------------------------------------------------------
+	const [user, setUser] = useState({
+		name: "Akash deep",
+		email: "ad3500476@example.com",
+	});
 	return (
 		<>
-			<Header />
-			<Outlet />
-			<Footer />
+			<UserContext.Provider value={{ user: user, setUser: setUser }}>
+				<Header />
+				<Outlet />
+				<Footer />
+			</UserContext.Provider>
 		</>
 	);
 };
