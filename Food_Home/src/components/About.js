@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link, Outlet } from "react-router-dom";
 import ProfileClass from "./ProfileClass";
 import React from "react";
+import UserContext from "../utils/UserContext";
 
 // const About = () => {
 // 	const [showProfile, setShowProfile] = useState(false);
@@ -20,33 +21,57 @@ import React from "react";
 class About extends React.Component {
 	constructor(props) {
 		super(props);
-		console.log("About Constructor")
-        this.state = {
-            showProfile: false
+		console.log("About Constructor");
+		this.state = {
+			showProfile: false,
 		};
 	}
 	componentDidMount() {
-        console.log("About ComponentDidMount");
+		console.log("About ComponentDidMount");
 	}
 	componentDidUpdate(prevProps, prevState) {
-        console.log("About ComponentDidUpdate");
+		console.log("About ComponentDidUpdate");
 	}
 	componentWillUnmount() {
-        console.log("About ComponentWillUnmount");
-    }
+		console.log("About ComponentWillUnmount");
+	}
 	render() {
-		console.log("About Render")
+		console.log("About Render");
 		return (
 			<div className="body-box">
 				<h1>About Page</h1>
-				{
-					this.state.showProfile ? <Link to="/about" onClick={() => { this.setState({ showProfile: false }) }}>Hide Profile</Link> :
-						<Link to="profile" onClick={() =>  { this.setState({ showProfile: true }) }}>Show Profile</Link>
-				}
+				{this.state.showProfile ? (
+					<Link
+						to="/about"
+						onClick={() => {
+							this.setState({ showProfile: false });
+						}}
+					>
+						Hide Profile
+					</Link>
+				) : (
+					<Link
+						to="profile"
+						onClick={() => {
+							this.setState({ showProfile: true });
+						}}
+					>
+						Show Profile
+					</Link>
+				)}
 				<Outlet />
 				{/* <ProfileClass /> */}
+
+				{/* useContest ----- */}
+				<UserContext.Consumer>
+					{({ user }) => (
+						<h4>
+							{user.name} - {user.email}
+						</h4>
+					)}
+				</UserContext.Consumer>
 			</div>
 		);
 	}
-};
+}
 export default About;

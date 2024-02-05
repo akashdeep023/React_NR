@@ -1,4 +1,6 @@
+import { useContext } from "react";
 import { IMG_URL } from "../constant";
+import UserContext from "../utils/UserContext";
 // Restaurant card component: Image, name, cuisine
 const RestaurantCard = (restaurantList) => {
 	const {
@@ -9,8 +11,11 @@ const RestaurantCard = (restaurantList) => {
 		sla,
 		areaName,
 		aggregatedDiscountInfoV3,
-		user, //Props drillings
+		// user, //Props drillings --------------------------------
 	} = restaurantList;
+
+	// useContext --------------------------------
+	const { user } = useContext(UserContext);
 	return (
 		<div className="card">
 			<div className="img-box">
@@ -35,6 +40,10 @@ const RestaurantCard = (restaurantList) => {
 			<p>{areaName}</p>
 			<h4>
 				{/* Props drilling */}
+				{/* {user.name} || {user.email} */}
+			</h4>
+			<h4>
+				{/* useContext  */}
 				{user.name} || {user.email}
 			</h4>
 		</div>

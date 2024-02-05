@@ -5,7 +5,7 @@ import useRestaurant from "../utils/useRestaurant";
 
 const RestaurantMenu = () => {
 	const { resId } = useParams();
-	const restaurant = useRestaurant(resId); //Create Hook (Normal javascript function)----
+	const restaurant = useRestaurant(resId); //Create Hook (Normal javascript function) -------
 	return !restaurant ? (
 		<ShimmerMenu />
 	) : (
