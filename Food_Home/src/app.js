@@ -32,6 +32,7 @@ import RestaurantMenu from "./components/RestaurantMenu";
 import Error from "./components/Error";
 import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
 import Profile from "./components/Profile";
+import Login from "./components/Login";
 // import ProfileClass from "./components/ProfileClass";
 
 const Cart = lazy(() => import("./components/Cart"));
@@ -41,6 +42,8 @@ const Cart = lazy(() => import("./components/Cart"));
 // Lazy loading
 // On Demand Loading
 // Dynamic Import
+
+// useContext ----------------------------------------------------------------
 
 const AppLayout = () => {
 	return (
@@ -88,6 +91,10 @@ const appRouter = createBrowserRouter([
 			{
 				path: "/restaurant/:resId",
 				element: <RestaurantMenu />,
+			},
+			{
+				path: "/login",
+				element: <Login />,
 			},
 		],
 	},

@@ -15,11 +15,16 @@ const Body = () => {
 		setSearchText(data);
 	};
 
+	// Props drilling ----------------------------------------------------------------
+	// Body Component => RestaurantCard Component => <h4>{ ... }</h4>
+	const [user, setUser] = useState({
+		name: "jack",
+		email: "jack@example.com",
+	});
+
 	const isOnline = useOnline();
 	if (!isOnline) {
-		return (
-			<h1 className="body-box">User was Offline ....</h1>
-		)
+		return <h1 className="body-box">User was Offline ....</h1>;
 	}
 	if (!allRestaurants)
 		return <div className="body-box">Data is not Loaded.......!</div>;
@@ -41,7 +46,10 @@ const Body = () => {
 								to={"/restaurant/" + restaurant.info.id}
 								key={restaurant.info.id}
 							>
-								<RestaurantCard {...restaurant.info} />
+								<RestaurantCard
+									{...restaurant.info}
+									user={user}
+								/>
 							</Link>
 						);
 					})}

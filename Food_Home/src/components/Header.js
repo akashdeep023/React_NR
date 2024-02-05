@@ -31,26 +31,26 @@ const Header = () => {
 					<li>
 						<Link to="cart">Cart</Link>
 					</li>
+					{isLogin ? (
+						<button
+							id="login"
+							onClick={() => {
+								setIsLogin(false);
+							}}
+						>
+							{isOnline ? "🟢" : "🔴"} Login
+						</button>
+					) : (
+						<button
+							id="login"
+							onClick={() => {
+								setIsLogin(true);
+							}}
+						>
+							{isOnline ? "🟢" : "🔴"} Logout
+						</button>
+					)}
 				</ul>
-				{isLogin ? (
-					<button
-						id="login"
-						onClick={() => {
-							setIsLogin(false);
-						}}
-					>
-						{isOnline ? "🟢" : "🔴"} Login
-					</button>
-				) : (
-					<button
-						id="login"
-						onClick={() => {
-							setIsLogin(true);
-						}}
-					>
-						{isOnline ? "🟢" : "🔴"} Logout
-					</button>
-				)}
 			</div>
 			<div id="header-margin"></div>
 		</>

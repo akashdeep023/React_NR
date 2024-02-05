@@ -9,6 +9,7 @@ const RestaurantCard = (restaurantList) => {
 		sla,
 		areaName,
 		aggregatedDiscountInfoV3,
+		user, //Props drillings
 	} = restaurantList;
 	return (
 		<div className="card">
@@ -32,6 +33,10 @@ const RestaurantCard = (restaurantList) => {
 			</h4>
 			<p className="card-head">{cuisines.join(", ")}</p>
 			<p>{areaName}</p>
+			<h4>
+				{/* Props drilling */}
+				{user.name} || {user.email}
+			</h4>
 		</div>
 	);
 };
