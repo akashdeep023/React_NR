@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import useAllRestaurants from "../utils/useAllRestaurants";
 import Search from "./Search";
 import useOnline from "../utils/useOnline";
-import UserContext from "../utils/UserContext";
+// import UserContext from "../utils/UserContext";
 
 const Body = () => {
 	const [allRestaurants, filteredRestaurants, setFilteredRestaurants] =
@@ -24,7 +24,7 @@ const Body = () => {
 	// });
 
 	// useContext ----------------------------------------------------------------
-	const { user, setUser } = useContext(UserContext);
+	// const { user, setUser } = useContext(UserContext);
 
 	const isOnline = useOnline();
 	if (!isOnline) {
@@ -43,7 +43,7 @@ const Body = () => {
 				giveSearchText={giveSearchText}
 			/>
 			{/* useContext ------- */}
-			<input
+			{/* <input
 				type="text"
 				value={user.name}
 				onChange={(e) => setUser({ ...user, name: e.target.value })}
@@ -52,7 +52,7 @@ const Body = () => {
 				type="text"
 				value={user.email}
 				onChange={(e) => setUser({ ...user, email: e.target.value })}
-			/>
+			/> */}
 			{filteredRestaurants?.length != 0 ? (
 				<div className="main-card body-box">
 					{filteredRestaurants.map((restaurant) => {

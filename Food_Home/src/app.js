@@ -44,6 +44,8 @@ const Cart = lazy(() => import("./components/Cart"));
 // Dynamic Import
 
 import UserContext from "./utils/UserContext";
+import { Provider } from "react-redux";
+import store from "./utils/store";
 
 const AppLayout = () => {
 	// useContext ----------------------------------------------------------------
@@ -52,13 +54,13 @@ const AppLayout = () => {
 		email: "ad3500476@example.com",
 	});
 	return (
-		<>
+		<Provider store={store}>
 			<UserContext.Provider value={{ user: user, setUser: setUser }}>
 				<Header />
 				<Outlet />
 				<Footer />
 			</UserContext.Provider>
-		</>
+		</Provider>
 	);
 };
 

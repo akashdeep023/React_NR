@@ -1,9 +1,10 @@
 import { useState, useContext } from "react";
 // import logo from "../assets/img/foodvilla.png";
-import logo from "../assets/img/Icon Teste Home.png";
+import logo from "../assets/img/Aahar-Anek.png";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import UserContext from "../utils/UserContext";
+import { useSelector } from "react-redux";
 
 const Title = () => {
 	return (
@@ -18,6 +19,12 @@ const Header = () => {
 
 	// useContext --------------------------------
 	const { user } = useContext(UserContext);
+
+	// Redux Store --------------------------------
+	// const cartItem = useSelector((store) => store.cart.items); // ya
+	const cartItem = useSelector((store) => {
+		return store.cart.items;
+	});
 	return (
 		// <> == React.Fragment
 		<>
@@ -25,7 +32,6 @@ const Header = () => {
 				<Title />
 				{/* useContest ----- */}
 				<span>
-					{console.log(user)}
 					<b>Hi</b> {user.name}
 				</span>
 				<ul className="nav-items">
@@ -38,8 +44,11 @@ const Header = () => {
 					<li>
 						<Link to="/contact">Contact</Link>
 					</li>
-					<li>
-						<Link to="cart">Cart</Link>
+					<li className="cart-item-count">
+						<Link to="cart">
+							Cart <i className="fa-solid fa-cart-shopping"></i>
+							<span>{cartItem.length}</span>
+						</Link>
 					</li>
 					{isLogin ? (
 						<button

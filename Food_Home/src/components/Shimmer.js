@@ -52,7 +52,7 @@ export const ShimmerMenu = () => {
 						return (
 							<div id="res-menu-offbox" key={"res-off" + idx}>
 								<div className="shimmer-box-menu">&nbsp;</div>
-								<div className="shimmer-box-menu">&nbsp;</div>
+								{/* <div className="shimmer-box-menu">&nbsp;</div> */}
 							</div>
 						);
 					})}
