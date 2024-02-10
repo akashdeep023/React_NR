@@ -46,6 +46,12 @@ const Cart = lazy(() => import("./components/Cart"));
 import UserContext from "./utils/UserContext";
 import { Provider } from "react-redux";
 import store from "./utils/store";
+// import RestaurantCollectionsInfo from "./components/RestaurantCollectionsInfo";
+const RestaurantCollectionsInfo = lazy(() =>
+	import("./components/RestaurantCollectionsInfo")
+);
+import Shimmer from "./components/Shimmer";
+import SearchBox from "./components/SearchBox";
 
 const AppLayout = () => {
 	// useContext ----------------------------------------------------------------
@@ -75,6 +81,10 @@ const appRouter = createBrowserRouter([
 				element: <Body />,
 			},
 			{
+				path: "/search",
+				element: <SearchBox />,
+			},
+			{
 				path: "/about",
 				element: <About />,
 				children: [
@@ -92,7 +102,7 @@ const appRouter = createBrowserRouter([
 			{
 				path: "/cart",
 				element: (
-					<Suspense fallback={<h1>Shimmer effect on card</h1>}>
+					<Suspense fallback={<Shimmer />}>
 						<Cart />
 					</Suspense>
 				),
@@ -100,6 +110,14 @@ const appRouter = createBrowserRouter([
 			{
 				path: "/restaurant/:resId",
 				element: <RestaurantMenu />,
+			},
+			{
+				path: "/collections/:resId",
+				element: (
+					<Suspense fallback={<Shimmer />}>
+						<RestaurantCollectionsInfo />
+					</Suspense>
+				),
 			},
 			{
 				path: "/login",

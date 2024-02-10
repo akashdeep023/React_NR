@@ -16,7 +16,7 @@ const RestaurantMenuProfile = (menuProfile) => {
 		<div id="res-menu-box">
 			<div id="res-menu-name">
 				<div>
-					<h3>{name}</h3> <p>{cuisines.join(", ")}</p>
+					<h3>{name}</h3> <p>{cuisines?.join(", ")}</p>
 					<p>
 						{areaName}, {sla?.lastMileTravelString}
 					</p>

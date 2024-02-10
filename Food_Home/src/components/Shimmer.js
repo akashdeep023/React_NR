@@ -1,26 +1,65 @@
 const Shimmer = () => {
 	return (
-		<>
-			<div className="search-box-shimmer">
-				<div className="search-shimmer"></div>
+		<div>
+			<div className="main-home-shimmer">
+				<div class="outer_circle">
+					<div class="inner_circle">
+						<i class="fa-solid fa-pizza-slice fa-fade"></i>
+					</div>
+				</div>
+				<h2>Looking for great food near you ...</h2>
 			</div>
-			<div className="main-card">
-				{Array(20)
-					.fill("")
-					.map((elem, idx) => {
-						return (
-							<div
-								className="shimmer card"
-								key={"shimmer-menu" + idx}
-							>
-								<div className="img-box img-shimmer"></div>
-								<div className="box-shimmer big-shimmer"></div>
-								<div className="box-shimmer"></div>
-								<div className="box-shimmer"></div>
-								<div className="box-shimmer"></div>
-							</div>
-						);
-					})}
+			<div className="body-box-res body-box">
+				{/* <div className="search-box-shimmer">
+					<div className="search-shimmer"></div>
+				</div> */}
+				<div className="main-card">
+					{Array(20)
+						.fill("")
+						.map((elem, idx) => {
+							return (
+								<div
+									className="shimmer card"
+									key={"shimmer-menu" + idx}
+								>
+									<div className="img-box img-shimmer"></div>
+									<div className="box-shimmer big-shimmer"></div>
+									<div className="box-shimmer"></div>
+									<div className="box-shimmer"></div>
+									<div className="box-shimmer"></div>
+								</div>
+							);
+						})}
+				</div>
+			</div>
+		</div>
+	);
+};
+const ShimmerOther = () => {
+	return (
+		<>
+			<div className="body-box-res body-box">
+				<div className="search-box-shimmer">
+					<div className="search-shimmer"></div>
+				</div>
+				<div className="main-card">
+					{Array(20)
+						.fill("")
+						.map((elem, idx) => {
+							return (
+								<div
+									className="shimmer card"
+									key={"shimmer-menu" + idx}
+								>
+									<div className="img-box img-shimmer"></div>
+									<div className="box-shimmer big-shimmer"></div>
+									<div className="box-shimmer"></div>
+									<div className="box-shimmer"></div>
+									<div className="box-shimmer"></div>
+								</div>
+							);
+						})}
+				</div>
 			</div>
 		</>
 	);

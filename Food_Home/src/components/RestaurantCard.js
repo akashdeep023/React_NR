@@ -17,9 +17,9 @@ const RestaurantCard = (restaurantList) => {
 	// useContext --------------------------------
 	// const { user } = useContext(UserContext);
 	return (
-		<div className="card">
+		<div className="card main-card-box">
 			<div className="img-box">
-				<img className="img" src={IMG_URL + cloudinaryImageId}></img>
+				<img className="img" src={IMG_URL + cloudinaryImageId} />
 				<div className="card-offer">
 					<h3 className="card-head">
 						{aggregatedDiscountInfoV3?.header}{" "}
@@ -36,7 +36,7 @@ const RestaurantCard = (restaurantList) => {
 				) : null}
 				{avgRating} • {sla?.slaString}
 			</h4>
-			<p className="card-head">{cuisines.join(", ")}</p>
+			<p className="card-head">{cuisines?.join(", ")}</p>
 			<p>{areaName}</p>
 			<h4>
 				{/* Props drilling */}

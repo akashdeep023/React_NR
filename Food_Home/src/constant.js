@@ -3,12 +3,19 @@ export const IMG_URL =
 export const IMG_SMALL_URL =
 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,e_color,c_fill/";
 export const FETCH_REST_URL =
-	"https://www.swiggy.com/dapi/restaurants/list/v5?lat=25.5940947&lng=85.1375645&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING";
+	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D25.5940947%26lng%3D85.1375645%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING";
 export const FETCH_MENU_URL =
-	"https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=25.5940947&lng=85.1375645&catalog_qa=undefined&submitAction=ENTER&restaurantId=";
+	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Fmenu%2Fpl%3Fpage-type%3DREGULAR_MENU%26complete-menu%3Dtrue%26lat%3D25.5940947%26lng%3D85.1375645%26catalog_qa%3Dundefined%26submitAction%3DENTER%26restaurantId%3D";
 export const OFFER_LOGO_URL =
 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_20,h_20/";
-
+export const IMG_INFO_URL =
+	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/";
+export const FETCH_INFO_URL =
+	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D25.5940947%26lng%3D85.1375645%26sortBy%3D%26filters%3D%26type%3Drcv2%26offset%3D0%26page_type%3Dnull%26collection%3D";
+export const FETCH_SEARCH_URL =
+	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Fsearch%2Fsuggest%3Flat%3D25.5940947%26lng%3D85.1375645%26trackingId%3Dnull%26str%3D";
+export const IMG_SEARCH_URL =
+	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/";
 // RestaurantList is JSON Data for displaying cards
 const RestaurantList = [
 	{
