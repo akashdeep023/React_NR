@@ -16,6 +16,10 @@ export const FETCH_SEARCH_URL =
 	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Fsearch%2Fsuggest%3Flat%3D25.5940947%26lng%3D85.1375645%26trackingId%3Dnull%26str%3D";
 export const IMG_SEARCH_URL =
 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/";
+export const FETCH_PRE_SEARCH_URL =
+	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Flanding%2FPRE_SEARCH%3Flat%3D25.5940947%26lng%3D85.1375645";
+export const IMG_PRE_SEARCH_URL =
+	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/";
 // RestaurantList is JSON Data for displaying cards
 const RestaurantList = [
 	{

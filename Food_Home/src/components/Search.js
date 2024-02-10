@@ -2,8 +2,8 @@ import React from "react";
 import { useState } from "react";
 import { findRestaurants } from "../utils/helper";
 
-const Search = ({allRestaurants,setFilteredRestaurants,giveSearchText}) => {
-    const [searchText, setSearchText] = useState("");
+const Search = ({ allRestaurants, setFilteredRestaurants, giveSearchText }) => {
+	const [searchText, setSearchText] = useState("");
 
 	return (
 		<div id="search-container">
@@ -18,11 +18,11 @@ const Search = ({allRestaurants,setFilteredRestaurants,giveSearchText}) => {
 						e.target.value,
 						allRestaurants
 					);
-                    setFilteredRestaurants(data);
-                    giveSearchText(e.target.value);
+					setFilteredRestaurants(data);
+					giveSearchText(e.target.value);
 				}}
 			/>
-			<button
+			{/* <button
 				onClick={() => {
 					const data = findRestaurants(searchText, allRestaurants);
 					setFilteredRestaurants(data);
@@ -30,7 +30,7 @@ const Search = ({allRestaurants,setFilteredRestaurants,giveSearchText}) => {
 				}}
 			>
 				Search
-            </button>
+            </button> */}
 		</div>
 	);
 };

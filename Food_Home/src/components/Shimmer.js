@@ -2,9 +2,9 @@ const Shimmer = () => {
 	return (
 		<div>
 			<div className="main-home-shimmer">
-				<div class="outer_circle">
-					<div class="inner_circle">
-						<i class="fa-solid fa-pizza-slice fa-fade"></i>
+				<div className="outer_circle">
+					<div className="inner_circle">
+						<i className="fa-solid fa-pizza-slice fa-fade"></i>
 					</div>
 				</div>
 				<h2>Looking for great food near you ...</h2>
@@ -35,13 +35,13 @@ const Shimmer = () => {
 		</div>
 	);
 };
-const ShimmerOther = () => {
+export const ShimmerCol = () => {
 	return (
 		<>
 			<div className="body-box-res body-box">
-				<div className="search-box-shimmer">
+				{/* <div className="search-box-shimmer">
 					<div className="search-shimmer"></div>
-				</div>
+				</div> */}
 				<div className="main-card">
 					{Array(20)
 						.fill("")

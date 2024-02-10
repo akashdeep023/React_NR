@@ -101,16 +101,25 @@ const Body = () => {
 						<hr className="topBrandHr" />
 					</>
 				) : null}
-				{/* <Search
-					allRestaurants={allRestaurants[5]}
-					setFilteredRestaurants={setFilteredRestaurants}
-					giveSearchText={giveSearchText}
-				/> */}
-				{filteredRestaurants?.length != 0 ? (
-					<div className="main-header-box">
-						<h2 className="main-card-title">
-							{allRestaurants[4]?.title}
-						</h2>
+
+				<div className="main-header-box">
+					<h2 className="main-card-title">
+						{allRestaurants[4]?.title}
+					</h2>
+					<div className="main-header-filter">
+						<Search
+							allRestaurants={allRestaurants[5]}
+							setFilteredRestaurants={setFilteredRestaurants}
+							giveSearchText={giveSearchText}
+						/>
+						<button>Fast Delivery</button>
+						<button>New on Food</button>
+						<button>Ratings 4.0+</button>
+						<button>Pure Veg</button>
+						<button>Offers</button>
+						<button>Less then Rs.300</button>
+					</div>
+					{filteredRestaurants?.length != 0 ? (
 						<div className="main-card">
 							{filteredRestaurants?.map((restaurant) => {
 								return (
@@ -129,12 +138,12 @@ const Body = () => {
 								);
 							})}
 						</div>
-					</div>
-				) : (
-					<div className="body-box search-empty">
-						No Restaurant search your match !! "{searchText}"
-					</div>
-				)}
+					) : (
+						<div className="body-box search-empty">
+							No Restaurant search your match !! "{searchText}"
+						</div>
+					)}
+				</div>
 			</div>
 		</>
 	);
