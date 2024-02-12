@@ -1,40 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import {
-	FETCH_PRE_SEARCH_URL,
-	FETCH_SEARCH_URL,
-	IMG_PRE_SEARCH_URL,
-	IMG_SEARCH_URL,
-} from "../constant";
+import { IMG_PRE_SEARCH_URL, IMG_SEARCH_URL } from "../constant";
+import useSearch from "../utils/useSearch";
 
 function SearchBox() {
 	const [search, setSearch] = useState("");
-	const [searchPreData, setSearchPreData] = useState([]);
-	const [searchData, setSearchData] = useState([]);
-	useEffect(() => {
-		getPreSearch();
-	}, []);
-	const getPreSearch = async function () {
-		const data = await fetch(FETCH_PRE_SEARCH_URL);
-		const json = await data.json();
-		setSearchPreData(
-			json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info
-		);
-	};
-	useEffect(() => {
-		getSearchData(search);
-	}, [search]);
-	const getSearchData = async function (search) {
-		if (search?.trim() == "") {
-			setSearchData([]);
-			return;
-		}
-		const data = await fetch(FETCH_SEARCH_URL + search);
-		const json = await data.json();
-		// console.log(json);
-		setSearchData(json?.data?.suggestions || []);
-	};
-	console.log(searchData);
+	const [searchData, searchPreData] = useSearch(search);
 	return (
 		<div className="body-box search-page">
 			<div className="search-input">

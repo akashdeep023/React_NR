@@ -21,6 +21,7 @@ const Search = ({ allRestaurants, setFilteredRestaurants, giveSearchText }) => {
 					setFilteredRestaurants(data);
 					giveSearchText(e.target.value);
 				}}
+				iut
 			/>
 			{/* <button
 				onClick={() => {

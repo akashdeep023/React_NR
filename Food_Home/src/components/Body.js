@@ -7,6 +7,8 @@ import useAllRestaurants from "../utils/useAllRestaurants";
 import Search from "./Search";
 import useOnline from "../utils/useOnline";
 import RestaurantCollections from "./RestaurantCollections";
+import Filter from "./Filter";
+import { IMG_NOT_FOUND_URL } from "../constant";
 // import UserContext from "../utils/UserContext";
 
 const Body = () => {
@@ -53,8 +55,9 @@ const Body = () => {
 
 			<div className="body-box-res body-box">
 				{allRestaurants[0] != undefined ? (
-					<>
-						<h2 className="topBrandTitle">
+					<div className="main-header-box">
+						{/* <h2 className="topBrandTitle"> */}
+						<h2 className="main-card-title">
 							{allRestaurants[0]?.title}
 						</h2>
 						<div className="topBrand">
@@ -75,12 +78,11 @@ const Body = () => {
 							})}{" "}
 						</div>
 						<hr className="topBrandHr" />
-					</>
+					</div>
 				) : null}
-				{allRestaurants[2] != undefined &&
-				allRestaurants[5]?.length == filteredRestaurants?.length ? (
-					<>
-						<h2 className="topBrandTitle">
+				{allRestaurants[2] != undefined ? (
+					<div className="main-header-box">
+						<h2 className="main-card-title">
 							{allRestaurants[2].title}
 						</h2>
 						<div className="topBrand">
@@ -99,7 +101,7 @@ const Body = () => {
 							})}
 						</div>
 						<hr className="topBrandHr" />
-					</>
+					</div>
 				) : null}
 
 				<div className="main-header-box">
@@ -112,12 +114,10 @@ const Body = () => {
 							setFilteredRestaurants={setFilteredRestaurants}
 							giveSearchText={giveSearchText}
 						/>
-						<button>Fast Delivery</button>
-						<button>New on Food</button>
-						<button>Ratings 4.0+</button>
-						<button>Pure Veg</button>
-						<button>Offers</button>
-						<button>Less then Rs.300</button>
+						<Filter
+							Restaurant={allRestaurants[5]}
+							setRestaurant={setFilteredRestaurants}
+						/>
 					</div>
 					{filteredRestaurants?.length != 0 ? (
 						<div className="main-card">
@@ -140,7 +140,13 @@ const Body = () => {
 						</div>
 					) : (
 						<div className="body-box search-empty">
-							No Restaurant search your match !! "{searchText}"
+							<p>
+								No Restaurant
+								{searchText != ""
+									? ` search your match !! " ${searchText} "`
+									: ""}
+							</p>
+							<img src={IMG_NOT_FOUND_URL} />
 						</div>
 					)}
 				</div>

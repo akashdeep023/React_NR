@@ -20,6 +20,11 @@ export const FETCH_PRE_SEARCH_URL =
 	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Flanding%2FPRE_SEARCH%3Flat%3D25.5940947%26lng%3D85.1375645";
 export const IMG_PRE_SEARCH_URL =
 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/";
+export const IMG_NOT_FOUND_URL =
+	"https://img.freepik.com/free-vector/choose-concept-illustration_114360-5566.jpg?w=740&t=st=1707694077~exp=1707694677~hmac=ab7ce4acf3858d5cf92e4b66a8c76536ab12b88adb63348db868564e5e48773d";
+export const IMG_ERROR_URL =
+	"https://img.freepik.com/free-vector/monster-404-error-concept-illustration_114360-1879.jpg?w=740&t=st=1707696379~exp=1707696979~hmac=73ecf431946a3e0143bae8b9710484cb87d7dcea47a51dce9bd3d87eadeb2a6c";
+// "https://img.freepik.com/free-vector/504-error-gateway-timeout-concept-illustration_114360-1907.jpg?w=740&t=st=1707694272~exp=1707694872~hmac=30780c1a9c1b30e80cdcff6edde90a38ac22ce6abbfedf9e3f69b8e63b952fe8";
 // RestaurantList is JSON Data for displaying cards
 const RestaurantList = [
 	{
