@@ -1,53 +1,106 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
 	findRestaurantsFast,
 	findRestaurantsOffer,
 	findRestaurantsRating,
+	findRestaurantsVeg,
+	findRestaurantsLess300,
+	findRestaurants300to600,
 } from "../utils/helper";
 
 const Filter = ({ Restaurant, setRestaurant }) => {
-	const [filter, setFilter] = useState("All");
+	const [filter, setFilter] = useState("jack");
 	return (
 		<>
 			<button
 				onClick={() => {
-					setRestaurant(Restaurant);
-					setFilter("All");
-				}}
-				id={filter == "All" ? "filterSelected" : ""}
-			>
-				All Restaurant
-				{filter == "All" && <i class="fa-solid fa-xmark"></i>}
-			</button>
-			<button
-				onClick={() => {
-					findRestaurantsFast(Restaurant, setRestaurant);
-					setFilter("Fast");
+					findRestaurantsFast(
+						Restaurant,
+						setRestaurant,
+						"Fast",
+						filter,
+						setFilter
+					);
 				}}
 				id={filter == "Fast" ? "filterSelected" : ""}
 			>
 				Fast Delivery
-				{filter == "Fast" && <i class="fa-solid fa-xmark"></i>}
+				{filter == "Fast" && <i className="fa-solid fa-xmark"></i>}
 			</button>
 			<button
 				onClick={() => {
-					findRestaurantsRating(Restaurant, setRestaurant);
-					setFilter("Rating");
+					findRestaurantsRating(
+						Restaurant,
+						setRestaurant,
+						"Rating",
+						filter,
+						setFilter
+					);
 				}}
 				id={filter == "Rating" ? "filterSelected" : ""}
 			>
 				Ratings 4.0+
-				{filter == "Rating" && <i class="fa-solid fa-xmark"></i>}
+				{filter == "Rating" && <i className="fa-solid fa-xmark"></i>}
 			</button>
 			<button
 				onClick={() => {
-					findRestaurantsOffer(Restaurant, setRestaurant);
-					setFilter("Offer");
+					findRestaurantsOffer(
+						Restaurant,
+						setRestaurant,
+						"Offer",
+						filter,
+						setFilter
+					);
 				}}
 				id={filter == "Offer" ? "filterSelected" : ""}
 			>
 				Offers
-				{filter == "Offer" && <i class="fa-solid fa-xmark"></i>}
+				{filter == "Offer" && <i className="fa-solid fa-xmark"></i>}
+			</button>
+			<button
+				onClick={() => {
+					findRestaurantsVeg(
+						Restaurant,
+						setRestaurant,
+						"Veg",
+						filter,
+						setFilter
+					);
+				}}
+				id={filter == "Veg" ? "filterSelected" : ""}
+			>
+				Pure Veg
+				{filter == "Veg" && <i className="fa-solid fa-xmark"></i>}
+			</button>
+			<button
+				onClick={() => {
+					findRestaurantsLess300(
+						Restaurant,
+						setRestaurant,
+						"less300",
+						filter,
+						setFilter
+					);
+				}}
+				id={filter == "less300" ? "filterSelected" : ""}
+			>
+				Less then Rs.300
+				{filter == "less300" && <i className="fa-solid fa-xmark"></i>}
+			</button>
+			<button
+				onClick={() => {
+					findRestaurants300to600(
+						Restaurant,
+						setRestaurant,
+						"300to600",
+						filter,
+						setFilter
+					);
+				}}
+				id={filter == "300to600" ? "filterSelected" : ""}
+			>
+				Rs.300-Rs.600
+				{filter == "300to600" && <i className="fa-solid fa-xmark"></i>}
 			</button>
 		</>
 	);

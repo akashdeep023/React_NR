@@ -3,6 +3,7 @@ import { Link, Outlet } from "react-router-dom";
 import ProfileClass from "./ProfileClass";
 import React from "react";
 import UserContext from "../utils/UserContext";
+import Burger from "../assets/img/Burger_Img.png";
 
 // const About = () => {
 // 	const [showProfile, setShowProfile] = useState(false);
@@ -38,38 +39,45 @@ class About extends React.Component {
 	render() {
 		console.log("About Render");
 		return (
-			<div className="body-box">
-				<h1>About Page</h1>
-				{this.state.showProfile ? (
-					<Link
-						to="/about"
-						onClick={() => {
-							this.setState({ showProfile: false });
-						}}
-					>
-						Hide Profile
-					</Link>
-				) : (
-					<Link
-						to="profile"
-						onClick={() => {
-							this.setState({ showProfile: true });
-						}}
-					>
-						Show Profile
-					</Link>
-				)}
-				<Outlet />
-				{/* <ProfileClass /> */}
-
-				{/* useContest ----- */}
-				<UserContext.Consumer>
-					{({ user }) => (
-						<h4>
-							{user.name} - {user.email}
-						</h4>
+			<div className="body-box about-page">
+				<div>
+					<h1>About Page</h1>
+					{/* useContest ----- */}
+					<UserContext.Consumer>
+						{({ user }) => (
+							<h4>
+								{user.name} - {user.email}
+							</h4>
+						)}
+					</UserContext.Consumer>
+					{this.state.showProfile ? (
+						<Link
+							to="/about"
+							onClick={() => {
+								this.setState({ showProfile: false });
+							}}
+						>
+							Hide Profile
+						</Link>
+					) : (
+						<Link
+							to="profile"
+							onClick={() => {
+								this.setState({ showProfile: true });
+							}}
+						>
+							Show Profile
+						</Link>
 					)}
-				</UserContext.Consumer>
+				</div>
+				<div>
+					{this.state.showProfile ? (
+						<Outlet />
+					) : (
+						<img className="burger-img" src={Burger} />
+					)}
+					{/* <ProfileClass /> */}
+				</div>
 			</div>
 		);
 	}

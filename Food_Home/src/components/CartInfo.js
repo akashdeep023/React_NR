@@ -9,24 +9,28 @@ const CartInfo = (item) => {
 	};
 	return (
 		<div className="cart-info">
-			{itemAttribute?.vegClassifier == "VEG" ? (
-				<i className="fa-regular fa-circle-stop" id="item-veg"></i>
-			) : (
-				<i
-					className="fa-regular fa-square-caret-up"
-					id="item-nonveg"
-				></i>
-			)}
-			<p className="cart-info-name">{name}</p>
-			<button
-				className="cart-remove-btn"
-				onClick={() => {
-					removeFoodItem(item);
-				}}
-			>
-				Remove
-			</button>
-			<p>{"₹" + (price || defaultPrice) / 100}</p>
+			<div>
+				{itemAttribute?.vegClassifier == "VEG" ? (
+					<i className="fa-regular fa-circle-stop" id="item-veg"></i>
+				) : (
+					<i
+						className="fa-regular fa-square-caret-up"
+						id="item-nonveg"
+					></i>
+				)}
+				<p className="cart-info-name">{name}</p>
+			</div>
+			<div>
+				<button
+					className="cart-remove-btn"
+					onClick={() => {
+						removeFoodItem(item);
+					}}
+				>
+					Remove
+				</button>
+				<p>{"₹" + (price || defaultPrice) / 100}</p>
+			</div>
 		</div>
 	);
 };

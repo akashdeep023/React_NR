@@ -1,21 +1,37 @@
 import { useDispatch, useSelector } from "react-redux";
 import CartInfo from "./CartInfo";
 import { clearCart } from "../utils/cartSlice";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import CartEmpty from "../assets/img/Cart-empty.png";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
 	const [contact, setContect] = useState(false);
+	const [totalPrice, setTotalPrice] = useState(0);
 	const cartItems = useSelector((store) => store.cart);
+	useEffect(() => {
+		setTotalPrice(
+			cartItems?.items?.reduce(
+				(sum, item) => sum + (item?.defaultPrice || item?.price),
+				0
+			)
+		);
+	});
 	const dispatch = useDispatch();
 	const clearFoodItems = () => {
 		dispatch(clearCart());
 	};
 	return !cartItems.restaurant ? (
-		<div className="body-box">
-			<h3>Card Empty</h3>
+		<div className="body-box cart-empty">
+			<img src={CartEmpty} />
+			<h3>Your cart is empty</h3>
+			<p>You can go to home page to view more restaurants</p>
+			<Link to="/">
+				<button>SEE RESTAURANTS NEAR YOU</button>
+			</Link>
 		</div>
 	) : (
-		<div className="body-box">
+		<div className="body-box cart-page">
 			<h1 className="cart-h">
 				Cart
 				<button
@@ -44,12 +60,14 @@ const Cart = () => {
 				</div>
 				<div className="cart-bills">
 					<div className="cart-opt">
-						<input
-							type="checkbox"
-							onClick={() => {
-								setContect(contact ? false : true);
-							}}
-						/>
+						<div className="cart-check">
+							<input
+								type="checkbox"
+								onClick={() => {
+									setContect(contact ? false : true);
+								}}
+							/>
+						</div>
 						<div>
 							<p>Opt in for No-contact Delivery</p>
 							{contact ? (
@@ -70,26 +88,35 @@ const Cart = () => {
 					</div>
 					<p>Bill Details</p>
 					<div className="cart-bill-his">
-						<p>Total Price</p>
-						<p>{}</p>
+						<p>Item Total</p>
+						<p>{"₹" + totalPrice / 100}</p>
 					</div>
 					<div className="cart-bill-his">
 						<p>
 							Delivery Fee
 							{" | " +
-								cartItems?.restaurant?.distance
-									?.lastMileTravelString}
+								(cartItems?.restaurant?.distance
+									?.lastMileTravelString ?? "2km")}
 						</p>
 						<p>
-							{"₹" +
-								cartItems?.restaurant?.distance
-									?.lastMileTravel *
-									20}
+							₹
+							{(cartItems?.restaurant?.distance?.lastMileTravel ??
+								2) * 20}
 						</p>
 					</div>
 					<div className="cart-bill-his">
-						<p>Total Price </p>
-						<p>{}</p>
+						<p>GST and Restaurant Charges</p>
+						<p>₹{(totalPrice * 18) / 10000}</p>
+					</div>
+					<div className="cart-bill-his to-pay">
+						<p>To Pay </p>
+						<p>
+							₹
+							{(totalPrice * 118) / 10000 +
+								(cartItems?.restaurant?.distance
+									?.lastMileTravel ?? 2) *
+									20}
+						</p>
 					</div>
 				</div>
 			</div>

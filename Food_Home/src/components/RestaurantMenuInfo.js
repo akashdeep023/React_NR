@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { IMG_SMALL_URL } from "../constant";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../utils/cartSlice";
 
 function RestaurantMenuInfo(card) {
@@ -9,6 +9,7 @@ function RestaurantMenuInfo(card) {
 	const [showMenu, setShowMenu] = useState(true);
 
 	// Redux Store --------------------------------
+	const itemsCart = useSelector((store) => store.cart.items);
 	const dispatch = useDispatch();
 	const addFoodItem = (item) => {
 		dispatch(addToCart({ item, resCart }));
@@ -74,7 +75,14 @@ function RestaurantMenuInfo(card) {
 											addFoodItem(cardb?.card?.info)
 										}
 									>
-										ADD
+										{itemsCart?.filter(
+											(item) =>
+												item?.id ==
+												cardb?.card?.info?.id
+										).length > 0
+											? "Added"
+											: "Add"}
+										{/* ADD */}
 									</button>
 								</div>
 							</div>

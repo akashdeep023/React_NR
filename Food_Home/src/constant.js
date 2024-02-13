@@ -3,28 +3,34 @@ export const IMG_URL =
 export const IMG_SMALL_URL =
 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_208,h_208,e_color,c_fill/";
 export const FETCH_REST_URL =
-	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D25.5940947%26lng%3D85.1375645%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING";
+	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D19.0759837%26lng%3D72.8776559%26is-seo-homepage-enabled%3Dtrue%26page_type%3DDESKTOP_WEB_LISTING";
 export const FETCH_MENU_URL =
-	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Fmenu%2Fpl%3Fpage-type%3DREGULAR_MENU%26complete-menu%3Dtrue%26lat%3D25.5940947%26lng%3D85.1375645%26catalog_qa%3Dundefined%26submitAction%3DENTER%26restaurantId%3D";
+	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Fmenu%2Fpl%3Fpage-type%3DREGULAR_MENU%26complete-menu%3Dtrue%26lat%3D19.0759837%26lng%3D72.8776559%26catalog_qa%3Dundefined%26submitAction%3DENTER%26restaurantId%3D";
 export const OFFER_LOGO_URL =
 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_20,h_20/";
 export const IMG_INFO_URL =
 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_288,h_360/";
 export const FETCH_INFO_URL =
-	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D25.5940947%26lng%3D85.1375645%26sortBy%3D%26filters%3D%26type%3Drcv2%26offset%3D0%26page_type%3Dnull%26collection%3D";
+	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Flist%2Fv5%3Flat%3D19.0759837%26lng%3D72.8776559%26sortBy%3D%26filters%3D%26type%3Drcv2%26offset%3D0%26page_type%3Dnull%26collection%3D";
 export const FETCH_SEARCH_URL =
-	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Fsearch%2Fsuggest%3Flat%3D25.5940947%26lng%3D85.1375645%26trackingId%3Dnull%26str%3D";
+	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Frestaurants%2Fsearch%2Fsuggest%3Flat%3D19.0759837%26lng%3D72.8776559%26trackingId%3Dnull%26str%3D";
 export const IMG_SEARCH_URL =
 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_112,h_112,c_fill/";
 export const FETCH_PRE_SEARCH_URL =
-	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Flanding%2FPRE_SEARCH%3Flat%3D25.5940947%26lng%3D85.1375645";
+	"https://corsproxy.org/?https%3A%2F%2Fwww.swiggy.com%2Fdapi%2Flanding%2FPRE_SEARCH%3Flat%3D19.0759837%26lng%3D72.8776559";
 export const IMG_PRE_SEARCH_URL =
 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto/";
 export const IMG_NOT_FOUND_URL =
 	"https://img.freepik.com/free-vector/choose-concept-illustration_114360-5566.jpg?w=740&t=st=1707694077~exp=1707694677~hmac=ab7ce4acf3858d5cf92e4b66a8c76536ab12b88adb63348db868564e5e48773d";
 export const IMG_ERROR_URL =
 	"https://img.freepik.com/free-vector/monster-404-error-concept-illustration_114360-1879.jpg?w=740&t=st=1707696379~exp=1707696979~hmac=73ecf431946a3e0143bae8b9710484cb87d7dcea47a51dce9bd3d87eadeb2a6c";
-// "https://img.freepik.com/free-vector/504-error-gateway-timeout-concept-illustration_114360-1907.jpg?w=740&t=st=1707694272~exp=1707694872~hmac=30780c1a9c1b30e80cdcff6edde90a38ac22ce6abbfedf9e3f69b8e63b952fe8";
+export const IMG_NOT_FOUND_SEARCH_URL =
+	"https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150696458.jpg?w=740&t=st=1707770818~exp=1707771418~hmac=2f659884f97f78536f73ce53b1bebb2ccf9483660854e7faaff54325df335e0b";
+export const IMG_OFFLINE_URL =
+	"https://img.lovepik.com/element/45009/2345.png_860.png";
+// export const IMG_LOCATION_UNSERVICE_URL =
+// 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_476,h_476/portal/m/location_unserviceable.png";
+
 // RestaurantList is JSON Data for displaying cards
 const RestaurantList = [
 	{

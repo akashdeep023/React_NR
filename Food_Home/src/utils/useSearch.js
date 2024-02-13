@@ -3,7 +3,7 @@ import { FETCH_PRE_SEARCH_URL, FETCH_SEARCH_URL } from "../constant";
 
 const useSearch = (query) => {
 	const [searchPreData, setSearchPreData] = useState([]);
-	const [searchData, setSearchData] = useState([]);
+	const [searchData, setSearchData] = useState(null);
 	useEffect(() => {
 		getPreSearch();
 	}, []);
@@ -11,7 +11,8 @@ const useSearch = (query) => {
 		const data = await fetch(FETCH_PRE_SEARCH_URL);
 		const json = await data.json();
 		setSearchPreData(
-			json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle?.info
+			json?.data?.cards[1]?.card?.card?.gridElements?.infoWithStyle
+				?.info || []
 		);
 	};
 
@@ -25,7 +26,11 @@ const useSearch = (query) => {
 		}
 		const data = await fetch(FETCH_SEARCH_URL + query);
 		const json = await data.json();
-		setSearchData(json?.data?.suggestions || []);
+		const selectedData = json?.data?.suggestions?.filter(
+			(resData) => resData?.type == "RESTAURANT"
+		);
+		// setSearchData(json?.data?.suggestions || []);
+		setSearchData(selectedData || []);
 	};
 	return [searchData, searchPreData];
 };

@@ -12,22 +12,24 @@ const Profile = () => {
 		followers: 28,
 		following: 5,
 	});
-    /*
-     *   Without dependencies array then run every time - })
-     *   With dependencies array then run one time - },[])
-     *   Use state in dependencies array then run one time -},[count])
-     */
+	/*
+	 *   Without dependencies array then run every time - })
+	 *   With dependencies array then run one time - },[])
+	 *   Use state in dependencies array then run one time -},[count])
+	 */
 	useEffect(() => {
-        console.log("Function useEffect");
-        const getUserData =async () => {
-            const data = await fetch("https://api.github.com/users/akashdeep023")
-            const json = await data.json();
-            console.log(json);
-            if (json.name) {
-                setUser(json);
-            }
-        }
-        getUserData()
+		console.log("Function useEffect");
+		const getUserData = async () => {
+			const data = await fetch(
+				"https://api.github.com/users/akashdeep023"
+			);
+			const json = await data.json();
+			console.log(json);
+			if (json.name) {
+				setUser(json);
+			}
+		};
+		getUserData();
 
 		// const timer = setInterval(() => {
 		// 	console.log("setInterval");
@@ -36,16 +38,30 @@ const Profile = () => {
 	}, []);
 	console.log("Function Render");
 	return (
-		<div>
-            <h1>Profile Page</h1>
-            <a href={user.html_url} target="_blank">Github Link</a>
-            <h2>{user.name} ({user.login})</h2>
-            <h3>{ user.bio }</h3>
-            <h3>{user.location}</h3>
-            <h3>followers: { user.followers || "--" } || following: { user.following || "--" }</h3>
-            <img src={user.avatar_url} />
-            <br/>
-			<button onClick={() => setCount(count + 1)}>Count: {count}</button>
+		<div className="profile-page">
+			<h1>Profile Page</h1>
+			<div className="profile-home">
+				<div>
+					<h3>
+						{user.name} ({user.login})
+					</h3>
+					<h4>
+						FOLLOWERS: {user.followers || "--"} || FOLLOWING:{" "}
+						{user.following || "--"}
+					</h4>
+					<h4>{user.bio}</h4>
+					<h4>{user.location}</h4>
+					<a href={user.html_url} target="_blank">
+						Github Link
+					</a>
+				</div>
+				<div>
+					<img src={user.avatar_url} />
+				</div>
+			</div>
+			<button className="countBtn" onClick={() => setCount(count + 1)}>
+				Count: {count}
+			</button>
 		</div>
 	);
 };

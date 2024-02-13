@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { IMG_PRE_SEARCH_URL, IMG_SEARCH_URL } from "../constant";
+import {
+	IMG_NOT_FOUND_SEARCH_URL,
+	IMG_PRE_SEARCH_URL,
+	IMG_SEARCH_URL,
+} from "../constant";
 import useSearch from "../utils/useSearch";
 
 function SearchBox() {
@@ -12,7 +16,7 @@ function SearchBox() {
 				<input
 					type="search"
 					value={search}
-					placeholder="Search for restaurants and food"
+					placeholder="Search for restaurants"
 					onChange={(e) => {
 						setSearch(e.target.value);
 					}}
@@ -20,7 +24,7 @@ function SearchBox() {
 			</div>
 			{searchData?.length > 0 ? (
 				searchData?.map((item, idx) => {
-					return item?.tagToDisplay == "Restaurant" ? (
+					return (
 						<div className="search-list" key={"searchItem" + idx}>
 							<Link
 								to={
@@ -39,9 +43,9 @@ function SearchBox() {
 								</div>
 							</Link>
 						</div>
-					) : null;
+					);
 				})
-			) : (
+			) : search == "" ? (
 				<div className="search-pre-list">
 					{searchPreData?.map((item, idx) => {
 						return (
@@ -63,6 +67,11 @@ function SearchBox() {
 							</div>
 						);
 					})}
+				</div>
+			) : (
+				<div className="body-box search-empty">
+					<p>No Restaurant</p>
+					<img src={IMG_NOT_FOUND_SEARCH_URL} />
 				</div>
 			)}
 		</div>

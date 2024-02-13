@@ -31,6 +31,9 @@ const useAllRestaurants = () => {
 		const infoLink = json?.data?.cards?.find((res) =>
 			res?.card?.card?.id?.includes("whats_on_your_mind")
 		);
+		const unService = json?.data?.cards?.find((res) =>
+			res?.card?.card?.id?.includes("swiggy_not_present")
+		);
 		// Optional Chaining '?'
 		setAllRestaurants([
 			infoLink?.card?.card?.header,
@@ -39,6 +42,7 @@ const useAllRestaurants = () => {
 			topBrand?.card?.card?.gridElements?.infoWithStyle?.restaurants, //20 items
 			allRestsTitle?.card?.card,
 			allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants, //9 items
+			unService?.card?.card, // unServiceable
 		]);
 		setFilteredRestaurants(
 			allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants //9 items

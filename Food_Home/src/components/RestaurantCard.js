@@ -17,7 +17,7 @@ const RestaurantCard = (restaurantList) => {
 	// useContext --------------------------------
 	// const { user } = useContext(UserContext);
 	return (
-		<div className="card main-card-box">
+		<div className="card">
 			<div className="img-box">
 				<img className="img" src={IMG_URL + cloudinaryImageId} />
 				<div className="card-offer">

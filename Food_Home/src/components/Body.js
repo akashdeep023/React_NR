@@ -9,15 +9,13 @@ import useOnline from "../utils/useOnline";
 import RestaurantCollections from "./RestaurantCollections";
 import Filter from "./Filter";
 import { IMG_NOT_FOUND_URL } from "../constant";
+import OfflineImage from "../assets/img/Offline.png";
+import { IMG_OFFLINE_URL } from "../constant";
 // import UserContext from "../utils/UserContext";
 
 const Body = () => {
 	const [allRestaurants, filteredRestaurants, setFilteredRestaurants] =
 		useAllRestaurants();
-	const [searchText, setSearchText] = useState("");
-	const giveSearchText = (data) => {
-		setSearchText(data);
-	};
 
 	// Props drilling ----------------------------------------------------------------
 	// Body Component => RestaurantCard Component => <h4>{ ... }</h4>
@@ -31,12 +29,26 @@ const Body = () => {
 
 	const isOnline = useOnline();
 	if (!isOnline) {
-		return <h1 className="body-box">User was Offline ....</h1>;
+		return (
+			<div className="offline-page">
+				<img alt="local img" src={OfflineImage} />
+				<img alt="url img" src={IMG_OFFLINE_URL} />
+			</div>
+		);
 	}
 	if (!allRestaurants) {
 		return <div className="body-box">Data is not Loaded.......!</div>;
 	}
-
+	if (allRestaurants[6]) {
+		return (
+			<div className="body-box unservice-page">
+				<img src={allRestaurants[6]?.imageLink} />
+				<h3 className="">{allRestaurants[6]?.title}</h3>
+				<p>We don’t have any services here till now.</p>
+				<p>Try changing location.</p>
+			</div>
+		);
+	}
 	return allRestaurants?.length == 0 ? (
 		<Shimmer />
 	) : (
@@ -112,7 +124,6 @@ const Body = () => {
 						<Search
 							allRestaurants={allRestaurants[5]}
 							setFilteredRestaurants={setFilteredRestaurants}
-							giveSearchText={giveSearchText}
 						/>
 						<Filter
 							Restaurant={allRestaurants[5]}
@@ -140,12 +151,7 @@ const Body = () => {
 						</div>
 					) : (
 						<div className="body-box search-empty">
-							<p>
-								No Restaurant
-								{searchText != ""
-									? ` search your match !! " ${searchText} "`
-									: ""}
-							</p>
+							<p>No Restaurant Found !!</p>
 							<img src={IMG_NOT_FOUND_URL} />
 						</div>
 					)}
