@@ -27,9 +27,9 @@ export const IMG_ERROR_URL =
 export const IMG_NOT_FOUND_SEARCH_URL =
 	"https://img.freepik.com/free-vector/hand-drawn-no-data-illustration_23-2150696458.jpg?w=740&t=st=1707770818~exp=1707771418~hmac=2f659884f97f78536f73ce53b1bebb2ccf9483660854e7faaff54325df335e0b";
 export const IMG_OFFLINE_URL =
-	"https://img.lovepik.com/element/45009/2345.png_860.png";
-// export const IMG_LOCATION_UNSERVICE_URL =
-// 	"https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_476,h_476/portal/m/location_unserviceable.png";
+	"https://img.freepik.com/free-vector/tiny-people-examining-operating-system-error-warning-web-page-isolated-flat-illustration_74855-11104.jpg?w=996&t=st=1708003009~exp=1708003609~hmac=8b4e90b44aefae9daad9978641551edb0d718cd9c5fc67de77f6874a37907a80";
+export const IMG_RESTAURANT_NOT_URL =
+	"https://img.freepik.com/free-vector/yes-no-concept-illustration_114360-7714.jpg?w=740&t=st=1707999100~exp=1707999700~hmac=4b3929e1b820dd1850b67521bfc4b4816ca39823bf64e02e042a68d665b12749";
 
 // RestaurantList is JSON Data for displaying cards
 const RestaurantList = [
