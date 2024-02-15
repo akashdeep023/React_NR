@@ -20,13 +20,17 @@ const Profile = () => {
 	useEffect(() => {
 		console.log("Function useEffect");
 		const getUserData = async () => {
-			const data = await fetch(
-				"https://api.github.com/users/akashdeep023"
-			);
-			const json = await data.json();
-			console.log(json);
-			if (json.name) {
-				setUser(json);
+			try {
+				const data = await fetch(
+					"https://api.github.com/users/akashdeep023"
+				);
+				const json = await data.json();
+				console.log(json);
+				if (json.name) {
+					setUser(json);
+				}
+			} catch (err) {
+				console.log(err);
 			}
 		};
 		getUserData();

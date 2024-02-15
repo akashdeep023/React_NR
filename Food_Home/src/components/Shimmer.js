@@ -26,7 +26,7 @@ const Shimmer = () => {
 							})}
 					</div>
 					<div className="main-card">
-						{Array(10)
+						{Array(8)
 							.fill("")
 							.map((elem, idx) => {
 								return (
@@ -56,7 +56,7 @@ export const ShimmerCol = () => {
 					<div className="box-shimmer big-header"></div>
 					<div className="box-shimmer big-header-half"></div>
 					<div className="main-card">
-						{Array(20)
+						{Array(8)
 							.fill("")
 							.map((elem, idx) => {
 								return (

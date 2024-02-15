@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { removeFromCart } from "../utils/cartSlice";
+import toast, { Toaster } from "react-hot-toast";
 
 const CartInfo = (item) => {
 	const { name, itemAttribute, price, defaultPrice } = item;
@@ -25,6 +26,7 @@ const CartInfo = (item) => {
 					className="cart-remove-btn"
 					onClick={() => {
 						removeFoodItem(item);
+						toast.success("Item removed successfully");
 					}}
 				>
 					Remove

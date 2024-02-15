@@ -3,7 +3,7 @@ import { ShimmerCol } from "./Shimmer";
 import RestaurantCard from "./RestaurantCard";
 import useCollections from "../utils/useCollections";
 
-const RestaurantCollectionsInfo = (info) => {
+const RestaurantCollectionsInfo = () => {
 	const { resId } = useParams();
 	const restaurant = useCollections(resId);
 	return !restaurant ? (

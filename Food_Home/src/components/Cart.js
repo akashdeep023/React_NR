@@ -4,6 +4,7 @@ import { clearCart } from "../utils/cartSlice";
 import { useEffect, useState } from "react";
 import CartEmpty from "../assets/img/Cart-empty.png";
 import { Link } from "react-router-dom";
+import toast from "react-hot-toast";
 
 const Cart = () => {
 	const [contact, setContect] = useState(false);
@@ -38,6 +39,7 @@ const Cart = () => {
 					className="cart-clear-btn"
 					onClick={() => {
 						clearFoodItems();
+						toast.success("Cart cleared successfully");
 					}}
 				>
 					Clear Cart

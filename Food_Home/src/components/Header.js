@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
+import toast from "react-hot-toast";
 
 const Title = () => {
 	return (
@@ -148,6 +149,7 @@ const Header = () => {
 									to="/"
 									onClick={() => {
 										setIsMenu(false);
+										toast.success("User logged in");
 									}}
 								>
 									<svg
@@ -168,6 +170,7 @@ const Header = () => {
 								id=""
 								onClick={() => {
 									setIsLogin(true);
+									toast.success("User logged out");
 								}}
 							>
 								<Link
@@ -262,6 +265,12 @@ const Header = () => {
 							id=""
 							onClick={() => {
 								setIsLogin(false);
+								toast.success("User logged in");
+								// toast.promise(saveSettings(settings), {
+								// 	loading: "Saving...",
+								// 	success: <b>Settings saved!</b>,
+								// 	error: <b>Could not save.</b>,
+								// });
 							}}
 						>
 							<Link to="/">
@@ -283,6 +292,7 @@ const Header = () => {
 							id=""
 							onClick={() => {
 								setIsLogin(true);
+								toast.success("User logged out");
 							}}
 						>
 							<Link to="/">
@@ -303,6 +313,17 @@ const Header = () => {
 				</ul>
 			</div>
 			<div id="header-margin"></div>
+			<div
+				className="scroll-top"
+				onClick={() => {
+					window.scrollTo({
+						top: 0,
+						behavior: "smooth",
+					});
+				}}
+			>
+				<i className="fa-solid fa-arrow-up"></i>
+			</div>
 		</>
 	);
 };

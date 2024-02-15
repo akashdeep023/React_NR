@@ -8,9 +8,12 @@ import Search from "./Search";
 import useOnline from "../utils/useOnline";
 import RestaurantCollections from "./RestaurantCollections";
 import Filter from "./Filter";
-import { IMG_NOT_FOUND_URL } from "../constant";
+import {
+	IMG_NOT_FOUND_URL,
+	IMG_OFFLINE_URL,
+	IMG_RESTAURANT_NOT_URL,
+} from "../constant";
 import OfflineImage from "../assets/img/Offline.png";
-import { IMG_OFFLINE_URL } from "../constant";
 // import UserContext from "../utils/UserContext";
 
 const Body = () => {
@@ -31,13 +34,22 @@ const Body = () => {
 	if (!isOnline) {
 		return (
 			<div className="offline-page">
-				<img alt="local img" src={OfflineImage} />
+				{/* <img alt="local img" src={OfflineImage} /> */}
 				<img alt="url img" src={IMG_OFFLINE_URL} />
 			</div>
 		);
 	}
 	if (!allRestaurants) {
-		return <div className="body-box">Data is not Loaded.......!</div>;
+		return (
+			<div className="body-box res-not-page">
+				<img src={IMG_RESTAURANT_NOT_URL} />
+				<h3 className="">Data Not Found.</h3>
+				<p>Something went wrong.</p>
+				<a href="/">
+					<button>TRY AGAIN</button>
+				</a>
+			</div>
+		);
 	}
 	if (allRestaurants[6]) {
 		return (
@@ -49,6 +61,15 @@ const Body = () => {
 			</div>
 		);
 	}
+	const scrollHandler = (idx, direction) => {
+		const box = document.querySelectorAll(".topBrand")[idx];
+		if (direction == "left") {
+			box.scrollLeft += -(box.clientWidth - box.clientWidth * 0.15);
+		} else {
+			box.scrollLeft += box.clientWidth - box.clientWidth * 0.15;
+		}
+	};
+
 	return allRestaurants?.length == 0 ? (
 		<Shimmer />
 	) : (
@@ -68,9 +89,25 @@ const Body = () => {
 			<div className="body-box-res body-box">
 				{allRestaurants[0] != undefined ? (
 					<div className="main-header-box">
-						{/* <h2 className="topBrandTitle"> */}
 						<h2 className="main-card-title">
-							{allRestaurants[0]?.title}
+							<span>{allRestaurants[0]?.title}</span>
+							<div className="scr-btn">
+								<span
+									onClick={(e) => {
+										scrollHandler(0, "left");
+									}}
+								>
+									<i className="fa-solid fa-arrow-left"></i>
+								</span>
+								&nbsp;&nbsp;
+								<span
+									onClick={(e) => {
+										scrollHandler(0, "right");
+									}}
+								>
+									<i className="fa-solid fa-arrow-right"></i>
+								</span>
+							</div>
 						</h2>
 						<div className="topBrand">
 							{allRestaurants[1].map((info) => {
@@ -95,7 +132,24 @@ const Body = () => {
 				{allRestaurants[2] != undefined ? (
 					<div className="main-header-box">
 						<h2 className="main-card-title">
-							{allRestaurants[2].title}
+							<span>{allRestaurants[2]?.title}</span>
+							<div>
+								<span
+									onClick={(e) => {
+										scrollHandler(1, "left");
+									}}
+								>
+									<i className="fa-solid fa-arrow-left"></i>
+								</span>
+								&nbsp;&nbsp;
+								<span
+									onClick={(e) => {
+										scrollHandler(1, "right");
+									}}
+								>
+									<i className="fa-solid fa-arrow-right"></i>
+								</span>
+							</div>
 						</h2>
 						<div className="topBrand">
 							{allRestaurants[3].map((restaurant) => {

@@ -3,6 +3,7 @@ import { useState } from "react";
 import { IMG_SMALL_URL } from "../constant";
 import { useDispatch, useSelector } from "react-redux";
 import { addToCart } from "../utils/cartSlice";
+import toast from "react-hot-toast";
 
 function RestaurantMenuInfo(card) {
 	const { title, itemCards, resCart } = card;
@@ -71,9 +72,12 @@ function RestaurantMenuInfo(card) {
 									) : null}
 									<button
 										id="item-add"
-										onClick={() =>
-											addFoodItem(cardb?.card?.info)
-										}
+										onClick={() => {
+											addFoodItem(cardb?.card?.info);
+											toast.success(
+												"Item added successfully"
+											);
+										}}
 									>
 										{itemsCart?.filter(
 											(item) =>
