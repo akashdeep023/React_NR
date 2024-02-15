@@ -15,38 +15,43 @@ const useAllRestaurants = () => {
 	}, []);
 
 	const getRestaurants = async function () {
-		const data = await fetch(FETCH_REST_URL);
-		const json = await data.json();
-		console.log(json);
+		try {
+			const data = await fetch(FETCH_REST_URL);
+			const json = await data.json();
+			console.log(json);
 
-		const topBrand = json?.data?.cards?.find((res) =>
-			res?.card?.card?.id?.includes("top_brands_for_you")
-		);
-		const allRests = json?.data?.cards?.find((res) =>
-			res?.card?.card?.id?.includes("restaurant_grid_listing")
-		);
-		const allRestsTitle = json?.data?.cards?.find((res) =>
-			res?.card?.card?.id?.includes("popular_restaurants_title")
-		);
-		const infoLink = json?.data?.cards?.find((res) =>
-			res?.card?.card?.id?.includes("whats_on_your_mind")
-		);
-		const unService = json?.data?.cards?.find((res) =>
-			res?.card?.card?.id?.includes("swiggy_not_present")
-		);
-		// Optional Chaining '?'
-		setAllRestaurants([
-			infoLink?.card?.card?.header,
-			infoLink?.card?.card?.gridElements?.infoWithStyle?.info,
-			topBrand?.card?.card?.header, // Top Brand title
-			topBrand?.card?.card?.gridElements?.infoWithStyle?.restaurants, //20 items
-			allRestsTitle?.card?.card,
-			allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants, //9 items
-			unService?.card?.card, // unServiceable
-		]);
-		setFilteredRestaurants(
-			allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants //9 items
-		);
+			const topBrand = json?.data?.cards?.find((res) =>
+				res?.card?.card?.id?.includes("top_brands_for_you")
+			);
+			const allRests = json?.data?.cards?.find((res) =>
+				res?.card?.card?.id?.includes("restaurant_grid_listing")
+			);
+			const allRestsTitle = json?.data?.cards?.find((res) =>
+				res?.card?.card?.id?.includes("popular_restaurants_title")
+			);
+			const infoLink = json?.data?.cards?.find((res) =>
+				res?.card?.card?.id?.includes("whats_on_your_mind")
+			);
+			const unService = json?.data?.cards?.find((res) =>
+				res?.card?.card?.id?.includes("swiggy_not_present")
+			);
+			// Optional Chaining '?'
+			setAllRestaurants([
+				infoLink?.card?.card?.header,
+				infoLink?.card?.card?.gridElements?.infoWithStyle?.info,
+				topBrand?.card?.card?.header, // Top Brand title
+				topBrand?.card?.card?.gridElements?.infoWithStyle?.restaurants, //20 items
+				allRestsTitle?.card?.card,
+				allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants, //9 items
+				unService?.card?.card, // unServiceable
+			]);
+			setFilteredRestaurants(
+				allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants //9 items
+			);
+		} catch (err) {
+			console.log(err);
+			setAllRestaurants(null);
+		}
 	};
 	return [allRestaurants, filteredRestaurants, setFilteredRestaurants];
 };
