@@ -52,6 +52,7 @@ const RestaurantCollectionsInfo = lazy(() =>
 );
 import Shimmer from "./components/Shimmer";
 import SearchBox from "./components/SearchBox";
+import { Toaster } from "react-hot-toast";
 
 const AppLayout = () => {
 	// useContext ----------------------------------------------------------------
@@ -62,6 +63,16 @@ const AppLayout = () => {
 	return (
 		<Provider store={store}>
 			<UserContext.Provider value={{ user: user, setUser: setUser }}>
+				<Toaster
+					position="bottot-center"
+					reverseOrder={false}
+					gutter={30}
+					containerClassName="toaster-container"
+					toastOptions={{
+						className: "toaster-toast",
+						duration: 1500,
+					}}
+				/>
 				<Header />
 				<Outlet />
 				<Footer />
