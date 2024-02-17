@@ -1,15 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FETCH_MENU_URL } from "../constant";
+import LocationContext from "./LocationContext";
 
 const useRestaurant = (resId) => {
 	const [restaurant, setRestaurant] = useState([]);
+	const { location } = useContext(LocationContext);
 	useEffect(() => {
 		getRestaurantMenu();
 	}, []);
 	const getRestaurantMenu = async () => {
 		try {
 			// const data = await fetch("https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=25.5940947&lng=85.1375645&restaurantId=" + resId)
-			const data = await fetch(FETCH_MENU_URL + resId);
+			const data = await fetch(
+				FETCH_MENU_URL +
+					resId +
+					"&lat=" +
+					location.latitude +
+					"&lng=" +
+					location.longitude
+			);
 			const json = await data.json();
 			// console.log(json);
 

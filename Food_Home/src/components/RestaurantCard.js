@@ -30,11 +30,14 @@ const RestaurantCard = (restaurantList) => {
 			<h3 className="card-head">{name}</h3>
 			<h4>
 				{avgRating ? (
-					<span>
-						<i className="fa-solid fa-star"></i>
-					</span>
-				) : null}
-				{avgRating} • {sla?.slaString}
+					<>
+						<span>
+							<i className="fa-solid fa-star"></i>
+						</span>
+						{avgRating} •
+					</>
+				) : null}{" "}
+				{sla?.slaString}
 			</h4>
 			<p className="card-head">{cuisines?.join(", ")}</p>
 			<p>{areaName}</p>

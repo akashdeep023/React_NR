@@ -6,6 +6,7 @@ import {
 	IMG_SEARCH_URL,
 } from "../constant";
 import useSearch from "../utils/useSearch";
+import { handleScrollTop } from "../utils/helper";
 
 function SearchBox() {
 	const [search, setSearch] = useState("");
@@ -33,6 +34,7 @@ function SearchBox() {
 										?.split('"primaryRestaurantId":')[1]
 										?.split(",")[0]
 								}
+								onClick={() => handleScrollTop()}
 							>
 								<img
 									src={IMG_SEARCH_URL + item?.cloudinaryId}

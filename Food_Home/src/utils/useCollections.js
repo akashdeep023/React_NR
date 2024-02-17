@@ -1,14 +1,24 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FETCH_INFO_URL } from "../constant";
+import LocationContext from "./LocationContext";
 
 const useCollections = (resId) => {
 	const [restaurant, setRestaurant] = useState(null);
+
+	const { location } = useContext(LocationContext);
 	useEffect(() => {
 		getCollection();
 	}, []);
 	const getCollection = async () => {
 		try {
-			const data = await fetch(FETCH_INFO_URL + resId);
+			const data = await fetch(
+				FETCH_INFO_URL +
+					resId +
+					"&lat=" +
+					location.latitude +
+					"&lng=" +
+					location.longitude
+			);
 			const json = await data.json();
 			// console.log(json);
 			const restInfo = json?.data?.cards;

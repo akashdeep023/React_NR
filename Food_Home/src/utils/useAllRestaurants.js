@@ -1,5 +1,7 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import { FETCH_REST_URL } from "../constant";
+import LocationContext from "./LocationContext";
+import CityContext from "./CityContext";
 
 const useAllRestaurants = () => {
 	const [allRestaurants, setAllRestaurants] = useState([]);
@@ -8,18 +10,26 @@ const useAllRestaurants = () => {
 	// useEffect render after rendering components (1st render component then render useEffect)
 	// empty dependency array => once after render
 	// dep array [searchText] => once after initial render + everytime after render (my searchText changes)
+
+	const { location } = useContext(LocationContext);
+	const { setCity } = useContext(CityContext);
 	useEffect(() => {
 		console.log("useEffect()");
 		// API call
 		getRestaurants();
-	}, []);
+	}, [location]);
 
 	const getRestaurants = async function () {
 		try {
-			const data = await fetch(FETCH_REST_URL);
+			const data = await fetch(
+				FETCH_REST_URL +
+					"lat=" +
+					location.latitude +
+					"&lng=" +
+					location.longitude
+			);
 			const json = await data.json();
-			console.log(json);
-
+			// console.log(json);
 			const topBrand = json?.data?.cards?.find((res) =>
 				res?.card?.card?.id?.includes("top_brands_for_you")
 			);
@@ -34,6 +44,11 @@ const useAllRestaurants = () => {
 			);
 			const unService = json?.data?.cards?.find((res) =>
 				res?.card?.card?.id?.includes("swiggy_not_present")
+			);
+			setCity(
+				json?.data?.cards[
+					json?.data?.cards.length - 1
+				]?.card?.card?.citySlug?.toUpperCase() || ""
 			);
 			// Optional Chaining '?'
 			setAllRestaurants([

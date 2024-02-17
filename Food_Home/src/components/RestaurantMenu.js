@@ -32,7 +32,7 @@ const RestaurantMenu = () => {
 			</Link>
 		</div>
 	) : (
-		<div id="res-menu">
+		<div id="res-menu" className="body-box">
 			<RestaurantMenuProfile
 				{...restaurant?.restInfo?.card?.card?.info}
 			/>

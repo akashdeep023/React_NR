@@ -1,19 +1,12 @@
-import { useState, useContext } from "react";
-// import logo from "../assets/img/foodvilla.png";
-import logo from "../assets/img/Aahar-Anek.png";
+import { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import useOnline from "../utils/useOnline";
 import UserContext from "../utils/UserContext";
 import { useSelector } from "react-redux";
 import toast from "react-hot-toast";
+import Title from "./Title";
+import { handleScrollTop } from "../utils/helper";
 
-const Title = () => {
-	return (
-		<Link to="/">
-			<img className="logo" alt="logo" src={logo} />
-		</Link>
-	);
-};
 const Header = () => {
 	const [isLogin, setIsLogin] = useState(false);
 	const [ismenu, setIsMenu] = useState(false);
@@ -62,6 +55,7 @@ const Header = () => {
 								to="/search"
 								onClick={() => {
 									setIsMenu(false);
+									handleScrollTop();
 								}}
 							>
 								<span>
@@ -83,6 +77,7 @@ const Header = () => {
 								to="/about"
 								onClick={() => {
 									setIsMenu(false);
+									handleScrollTop();
 								}}
 							>
 								<span>
@@ -104,6 +99,7 @@ const Header = () => {
 								to="/contact"
 								onClick={() => {
 									setIsMenu(false);
+									handleScrollTop();
 								}}
 							>
 								<i className="fa-regular fa-address-book"></i>
@@ -115,6 +111,7 @@ const Header = () => {
 								to="cart"
 								onClick={() => {
 									setIsMenu(false);
+									handleScrollTop();
 								}}
 							>
 								<div>
@@ -140,7 +137,6 @@ const Header = () => {
 						</li>
 						{isLogin ? (
 							<li
-								id=""
 								onClick={() => {
 									setIsLogin(false);
 								}}
@@ -149,6 +145,7 @@ const Header = () => {
 									to="/"
 									onClick={() => {
 										setIsMenu(false);
+										handleScrollTop();
 										toast.success("User logged in");
 									}}
 								>
@@ -167,7 +164,6 @@ const Header = () => {
 							</li>
 						) : (
 							<li
-								id=""
 								onClick={() => {
 									setIsLogin(true);
 									toast.success("User logged out");
@@ -177,6 +173,7 @@ const Header = () => {
 									to="/"
 									onClick={() => {
 										setIsMenu(false);
+										handleScrollTop();
 									}}
 								>
 									<svg
@@ -200,7 +197,7 @@ const Header = () => {
 						<i className="fa-solid fa-xmark"></i>
 					</span>
 					<li>
-						<Link to="/search">
+						<Link to="/search" onClick={() => handleScrollTop()}>
 							<span>
 								<svg
 									className="_1GTCc"
@@ -216,7 +213,7 @@ const Header = () => {
 						</Link>
 					</li>
 					<li>
-						<Link to="/about">
+						<Link to="/about" onClick={() => handleScrollTop()}>
 							<span>
 								<svg
 									className="_1GTCc"
@@ -232,13 +229,13 @@ const Header = () => {
 						</Link>
 					</li>
 					<li>
-						<Link to="/contact">
+						<Link to="/contact" onClick={() => handleScrollTop()}>
 							<i className="fa-regular fa-address-book"></i>
 							<span>Contact</span>
 						</Link>
 					</li>
 					<li>
-						<Link to="cart">
+						<Link to="cart" onClick={() => handleScrollTop()}>
 							<div>
 								<span className="CartIconNo">
 									{cartItem.length}
@@ -262,9 +259,9 @@ const Header = () => {
 					</li>
 					{isLogin ? (
 						<li
-							id=""
 							onClick={() => {
 								setIsLogin(false);
+								handleScrollTop();
 								toast.success("User logged in");
 								// toast.promise(saveSettings(settings), {
 								// 	loading: "Saving...",
@@ -289,9 +286,9 @@ const Header = () => {
 						</li>
 					) : (
 						<li
-							id=""
 							onClick={() => {
 								setIsLogin(true);
+								handleScrollTop();
 								toast.success("User logged out");
 							}}
 						>
@@ -313,15 +310,7 @@ const Header = () => {
 				</ul>
 			</div>
 			<div id="header-margin"></div>
-			<div
-				className="scroll-top"
-				onClick={() => {
-					window.scrollTo({
-						top: 0,
-						behavior: "smooth",
-					});
-				}}
-			>
+			<div className="scroll-top" onClick={() => handleScrollTop()}>
 				<i className="fa-solid fa-arrow-up"></i>
 			</div>
 		</>

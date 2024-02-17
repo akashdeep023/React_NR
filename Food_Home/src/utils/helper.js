@@ -91,3 +91,9 @@ export const findRestaurants300to600 = (
 		setRes(data);
 	}
 };
+export const handleScrollTop = () => {
+	window.scrollTo({
+		top: 0,
+		behavior: "smooth",
+	});
+};

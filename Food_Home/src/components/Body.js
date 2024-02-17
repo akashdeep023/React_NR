@@ -13,7 +13,8 @@ import {
 	IMG_OFFLINE_URL,
 	IMG_RESTAURANT_NOT_URL,
 } from "../constant";
-import OfflineImage from "../assets/img/Offline.png";
+// import OfflineImage from "../assets/img/Offline.png";
+import { handleScrollTop } from "../utils/helper";
 // import UserContext from "../utils/UserContext";
 
 const Body = () => {
@@ -69,7 +70,6 @@ const Body = () => {
 			box.scrollLeft += box.clientWidth - box.clientWidth * 0.15;
 		}
 	};
-
 	return allRestaurants?.length == 0 ? (
 		<Shimmer />
 	) : (
@@ -120,6 +120,7 @@ const Body = () => {
 												?.split("&")[0]
 										}
 										key={"collections" + info?.id}
+										onClick={() => handleScrollTop()}
 									>
 										<RestaurantCollections {...info} />
 									</Link>
@@ -157,6 +158,7 @@ const Body = () => {
 									<Link
 										to={"/restaurant/" + restaurant.info.id}
 										key={"allres" + restaurant.info.id}
+										onClick={() => handleScrollTop()}
 									>
 										<RestaurantCard
 											{...restaurant.info}
@@ -194,6 +196,7 @@ const Body = () => {
 											restaurant?.info?.id
 										}
 										key={"filter" + restaurant?.info?.id}
+										onClick={() => handleScrollTop()}
 									>
 										<RestaurantCard
 											{...restaurant.info}

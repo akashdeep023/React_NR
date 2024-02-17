@@ -2,6 +2,7 @@ import { Link, useParams } from "react-router-dom";
 import { ShimmerCol } from "./Shimmer";
 import RestaurantCard from "./RestaurantCard";
 import useCollections from "../utils/useCollections";
+import { handleScrollTop } from "../utils/helper";
 
 const RestaurantCollectionsInfo = () => {
 	const { resId } = useParams();
@@ -33,6 +34,7 @@ const RestaurantCollectionsInfo = () => {
 									"infoCard" +
 									restaurant?.card?.card?.info?.id
 								}
+								onClick={() => handleScrollTop()}
 							>
 								<RestaurantCard
 									{...restaurant?.card?.card?.info}
