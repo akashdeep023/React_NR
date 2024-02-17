@@ -22,6 +22,48 @@
     margin-top: 5px;
 }
 
+.title-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    gap: 10px;
+}
+
+.title-box div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 5px;
+    gap: 7px;
+    cursor: pointer;
+}
+
+.title-box div:hover button {
+    color: #ff6600;
+    border-bottom-color: #ff6600;
+}
+
+.title-box div p {
+    font-size: 13px;
+    font-weight: 400;
+}
+
+.title-box div button {
+    font-weight: 700;
+    outline: none;
+    border: none;
+    background-color: #ffffff00;
+    border-bottom: 2px solid #000;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.location-name {
+    flex-direction: column;
+    gap: 0px !important;
+}
+
 .header {
     position: fixed;
     width: 100%;
@@ -53,8 +95,8 @@
 }
 
 .nav-items li a {
-    width: 110px;
-    height: 40px;
+    width: 95px;
+    height: 30px;
     position: relative;
     display: flex;
     align-items: center;
@@ -62,12 +104,12 @@
     gap: 5px;
     text-decoration: none;
     color: gray;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
-.nav-items li a:hover {
+/* .nav-items li a:hover {
     box-shadow: 0px 0px 5px #0000002e;
-}
+} */
 
 .nav-items li a #cart-no {
     fill: #fff;
@@ -369,7 +411,7 @@
     }
 
     .main-card-title {
-        font-size: 1.2rem;
+        font-size: 1.25rem;
     }
 }
 
@@ -384,9 +426,22 @@
         width: 250px
     }
 
+    .main-header-box {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
     .main-card-title {
-        font-size: 1.05rem;
-        width: 250px;
+        font-size: 19.8px;
+        width: 95%;
+    }
+
+    .main-header-filter {
+        width: 95%;
+        padding: 5px;
     }
 }
 
@@ -468,6 +523,7 @@
 
 .body-box {
     min-height: calc(60vh - 120px);
+    background: #f2f6fc;
 }
 
 .search-empty {
@@ -505,11 +561,11 @@
 .footer > div:last-child {
     padding-top: 1%;
     padding-bottom: 2%;
-    font-size: 16px;
+    font-size: 15px;
     flex-direction: column;
     align-items: center;
     letter-spacing: 1px;
-    color: lightgrey;
+    color: rgb(144, 144, 144);
 }
 
 .footer > div > div {
@@ -530,27 +586,19 @@
     text-decoration: underline;
 }
 
-/* #login {
-    width: 85px;
-    padding: 10px 5px;
-    border-radius: 5px;
-    border: 1px solid #491375;
-    background-color: #8c00ff;
-    box-shadow: inset 0px 0px 10px #140024;
-    color: white;
-    font-weight: 700;
-    cursor: pointer !important;
-} */
-
-#login:hover {
-    box-shadow: 0px 0px 10px #140024;
-    background-color: black;
+.footer-s {
+    display: flex;
+    width: 66%;
+    justify-content: space-evenly;
 }
 
-/* #login:active {
-    background-color: #8c00ff;
-    box-shadow: inset 0px 0px 10px #140024;
-} */
+.footer-s2 {
+    /* display: flex;
+    flex-direction: column; */
+    width: 28%;
+    /* justify-content: space-evenly;
+    align-items: flex-start; */
+}
 
 /* ------------Restaurant Menu------------ */
 #res-menu {
@@ -1161,7 +1209,7 @@
 }
 
 .cart-main {
-    width: 400px;
+    max-width: 500px;
     box-shadow: 0px 3px 10px #171a29;
     border-radius: 5px;
     margin: 10px;
@@ -1193,6 +1241,7 @@
     gap: 20px;
     margin: 5px 0px;
 }
+
 
 .cart-info div:first-child {
     display: flex;
@@ -1230,6 +1279,29 @@
     white-space: nowrap;
     font-weight: 600;
     height: 32px;
+}
+
+.pay-now {
+    margin: 5px 0px;
+    padding: 5px 12px;
+    cursor: pointer;
+    border-radius: 15px;
+    border: none;
+    background-color: Green;
+    color: #ffffffc0;
+    box-shadow: 0px 0px 5px #bbb;
+    white-space: nowrap;
+    font-weight: 600;
+    height: 32px;
+}
+
+img {
+    mix-blend-mode: multiply;
+}
+
+.pay-now:hover {
+    background-color: #000;
+    color: #fff;
 }
 
 .cart-opt {
@@ -1324,7 +1396,6 @@
 .search-pre-list {
     display: flex;
     flex-direction: row;
-    background: #fff;
     overflow-x: scroll;
     border-radius: 10px;
     overflow-y: none !important;
@@ -1349,11 +1420,13 @@
     position: sticky;
     top: 90px;
     background-color: white;
+    z-index: 2;
     height: 50px;
 
 }
 
 .search-input input {
+    background-color: white;
     height: 43px;
     width: 100%;
     border: .5 solid gray;
@@ -1541,12 +1614,6 @@ div.about-page div a:hover {
         height: 50vh;
     }
 
-    /* .error-img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-    } */
-
     #res-menu-box,
     #res-menu-cardbox,
     #res-menu-off,
@@ -1556,6 +1623,13 @@ div.about-page div a:hover {
 
     .footer > div {
         font-size: .9rem;
+    }
+
+    .footer-s {
+        display: flex;
+        width: 50%;
+        flex-direction: column;
+        justify-content: space-evenly;
     }
 
     .logo {
@@ -1568,7 +1642,6 @@ div.about-page div a:hover {
     .nav-items {
         display: none;
     }
-
 
     #nav-items-small-show {
         flex-direction: column;
