@@ -15,7 +15,8 @@ const Cart = () => {
 	useEffect(() => {
 		setTotalPrice(
 			cartItems?.items?.reduce(
-				(sum, item) => sum + (item?.defaultPrice || item?.price),
+				(sum, item) =>
+					sum + (item[0]?.defaultPrice || item[0]?.price) * item[1],
 				0
 			)
 		);
@@ -112,22 +113,26 @@ const Cart = () => {
 								</p>
 								<p>
 									₹
-									{(cartItems?.restaurant?.distance
-										?.lastMileTravel ?? 2) * 20}
+									{(
+										(cartItems?.restaurant?.distance
+											?.lastMileTravel ?? 2) * 20
+									).toFixed(2)}
 								</p>
 							</div>
 							<div className="cart-bill-his">
 								<p>GST and Restaurant Charges</p>
-								<p>₹{(totalPrice * 18) / 10000}</p>
+								<p>₹{((totalPrice * 5) / 10000).toFixed(2)}</p>
 							</div>
 							<div className="cart-bill-his to-pay">
 								<p>To Pay </p>
 								<p>
 									₹
-									{(totalPrice * 118) / 10000 +
+									{(
+										(totalPrice * 105) / 10000 +
 										(cartItems?.restaurant?.distance
 											?.lastMileTravel ?? 2) *
-											20}
+											20
+									).toFixed(2)}
 								</p>
 							</div>
 						</div>

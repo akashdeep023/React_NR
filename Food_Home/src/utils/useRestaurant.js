@@ -22,7 +22,7 @@ const useRestaurant = (resId) => {
 			const json = await data.json();
 			// console.log(json);
 
-			console.log(json?.data?.cards);
+			// console.log(json?.data?.cards);
 			const restInfo = json?.data?.cards?.find((res) =>
 				res?.card?.card["@type"]?.includes("food.v2.Restaurant")
 			);

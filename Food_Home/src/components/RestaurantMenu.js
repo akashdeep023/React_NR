@@ -5,6 +5,8 @@ import useRestaurant from "../utils/useRestaurant";
 import RestaurantMenuProfile from "./RestaurantMenuProfile";
 import RestaurantMenuOffer from "./RestaurantMenuOffer";
 import RestaurantMenuInfo from "./RestaurantMenuInfo";
+import { useSelector } from "react-redux";
+import { handleScrollTop } from "../utils/helper";
 
 const RestaurantMenu = () => {
 	const { resId } = useParams();
@@ -18,6 +20,8 @@ const RestaurantMenu = () => {
 			IMG_URL + restaurant?.restInfo?.card?.card?.info?.cloudinaryImageId,
 		distance: restaurant?.restInfo?.card?.card?.info?.sla,
 	};
+	const resAddedToCart = useSelector((store) => store?.cart);
+	console.log(resAddedToCart);
 
 	if (restaurant?.length == 0) {
 		return <ShimmerMenu />;
@@ -61,6 +65,14 @@ const RestaurantMenu = () => {
 					}
 				)}
 			</div>
+			{resAddedToCart?.restaurant && (
+				<div className="view-cart">
+					<h4>{resAddedToCart?.items?.length} item added</h4>
+					<Link to="/cart" onClick={() => handleScrollTop()}>
+						<h3>VIEW CART</h3>
+					</Link>
+				</div>
+			)}
 		</div>
 	);
 };

@@ -37,6 +37,8 @@ const Body = () => {
 			<div className="offline-page">
 				{/* <img alt="local img" src={OfflineImage} /> */}
 				<img alt="url img" src={IMG_OFFLINE_URL} />
+				<h2>Oops! You're Offline</h2>
+				<p>Please check your internet connection and try again.</p>
 			</div>
 		);
 	}

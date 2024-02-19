@@ -1,12 +1,16 @@
-import { useDispatch } from "react-redux";
-import { removeFromCart } from "../utils/cartSlice";
-import toast, { Toaster } from "react-hot-toast";
+import { useDispatch, useSelector } from "react-redux";
+import { increaseCount, decreaseCount } from "../utils/cartSlice";
+import toast from "react-hot-toast";
 
 const CartInfo = (item) => {
-	const { name, itemAttribute, price, defaultPrice } = item;
+	const { name, itemAttribute, price, defaultPrice, id } = item[0];
+	const count = item[1];
 	const dispatch = useDispatch();
+	const addFoodItem = (i) => {
+		dispatch(increaseCount(i));
+	};
 	const removeFoodItem = (i) => {
-		dispatch(removeFromCart(i));
+		dispatch(decreaseCount(i));
 	};
 	return (
 		<div className="cart-info">
@@ -22,16 +26,28 @@ const CartInfo = (item) => {
 				<p className="cart-info-name">{name}</p>
 			</div>
 			<div>
-				<button
-					className="cart-remove-btn"
-					onClick={() => {
-						removeFoodItem(item);
-						toast.success("Item removed successfully");
-					}}
-				>
-					Remove
-				</button>
-				<p>{"₹" + (price || defaultPrice) / 100}</p>
+				<span className="cart-remove-btn">
+					<button
+						className=""
+						onClick={() => {
+							removeFoodItem(item[0].id);
+							toast.success("Item removed successfully");
+						}}
+					>
+						&minus;
+					</button>
+					<span>{count}</span>
+					<button
+						className=""
+						onClick={() => {
+							addFoodItem(item[0].id);
+							toast.success("Item added successfully");
+						}}
+					>
+						+
+					</button>
+				</span>
+				<p>₹{(count * (price || defaultPrice)) / 100}</p>
 			</div>
 		</div>
 	);

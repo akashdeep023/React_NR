@@ -10,12 +10,12 @@ const useOnline = () => {
 	};
 	useEffect(() => {
 		window.addEventListener("online", Onlinehandler);
-        window.addEventListener("offline", Offlinehandler);
-        console.log("Online handler run")
+		window.addEventListener("offline", Offlinehandler);
+		console.log("Online handler run");
 		return () => {
-            window.removeEventListener("online", Onlinehandler);
+			window.removeEventListener("online", Onlinehandler);
 			window.removeEventListener("offline", Offlinehandler);
-            console.log("Online handler return")
+			console.log("Online handler return");
 		};
 	}, []);
 	return isOnline;

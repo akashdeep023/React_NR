@@ -80,7 +80,7 @@ export const ShimmerCol = () => {
 };
 export const ShimmerMenu = () => {
 	return (
-		<div id="res-menu">
+		<div id="res-menu" className="body-box">
 			<div id="res-menu-box">
 				<div id="res-menu-name" className="shimmer-menu">
 					<div>
@@ -113,7 +113,7 @@ export const ShimmerMenu = () => {
 			<div id="res-menu-cardbox">
 				<div id="res-menu-cardb">
 					<div className="shimmer-box-menu">&nbsp;</div>
-					{Array(10)
+					{Array(5)
 						.fill("")
 						.map((item, i) => {
 							return (
