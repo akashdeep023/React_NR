@@ -16,8 +16,8 @@
     display: none;
 } */
 .logo {
-    height: 50px;
-    width: 80px;
+    height: 70px;
+    width: 70px;
     object-fit: cover;
     margin-top: 5px;
 }
@@ -1461,11 +1461,6 @@ img {
     }
 }
 
-.new-box {
-    transform-origin: 50% 0;
-    animation: append-animate .3s linear;
-}
-
 .to-pay {
     font-weight: 700;
     border-top: 2px solid #000;
@@ -1758,8 +1753,8 @@ div.about-page div a:hover {
     }
 
     .logo {
-        height: 40px;
-        width: 70px;
+        height: 60px;
+        width: 60px;
         object-fit: cover;
         margin-top: 5px;
     }
@@ -1778,8 +1773,9 @@ div.about-page div a:hover {
         background-color: #fff;
         border-radius: 10px;
         box-shadow: 0px 0px 10px #00000076;
-        padding: 30px 30px 30px 60px;
+        padding: 30px 50px 30px 60px;
         display: initial;
+        animation: .3s linear header-animation;
     }
 
     #nav-items-small-show li a {
@@ -1800,6 +1796,21 @@ div.about-page div a:hover {
     }
 }
 
+@keyframes header-animation {
+    from {
+        opacity: 0;
+        /* bottom: -50px; */
+        right: -100px;
+        transform: scale(0);
+    }
+
+    to {
+        transform: scale(1);
+        opacity: 1;
+        right: 10px;
+    }
+}
+
 @media (max-width: 424px) {
 
     #res-menu-box,
@@ -1815,8 +1826,8 @@ div.about-page div a:hover {
     }
 
     .logo {
-        height: 35px;
-        width: 60px;
+        height: 50px;
+        width: 50px;
         object-fit: cover;
         margin-top: 5px;
     }

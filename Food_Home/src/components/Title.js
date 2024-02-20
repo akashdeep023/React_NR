@@ -1,6 +1,6 @@
 // import logo from "../assets/img/foodvilla.png";
 import { Link } from "react-router-dom";
-import logo from "../assets/img/Aahar-Anek.png";
+import logo from "../assets/img/Food-Plaza.png";
 import { useContext, useState } from "react";
 import LocationContext from "../utils/LocationContext";
 import CityContext from "../utils/CityContext";

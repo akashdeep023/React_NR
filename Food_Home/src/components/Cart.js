@@ -21,6 +21,11 @@ const Cart = () => {
 			)
 		);
 	});
+	const handleSound = () => {
+		const audio = document.getElementById("payment-sound");
+		audio.play();
+		console.log(audio);
+	};
 	const dispatch = useDispatch();
 	const clearFoodItems = () => {
 		dispatch(clearCart());
@@ -156,7 +161,11 @@ const Cart = () => {
 						setTimeout(() => {
 							toast.dismiss(toastId);
 							toast.success("Payment successfully");
+							handleSound();
 						}, 5500);
+						setTimeout(() => {
+							handleSound();
+						}, 3500);
 						setTimeout(() => {
 							clearFoodItems();
 						}, 6000);

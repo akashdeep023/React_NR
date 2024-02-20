@@ -10,6 +10,7 @@
 	"author": "Akash Deep",
 	"license": "ISC",
 	"devDependencies": {
+		"@babel/core": "^7.23.9",
 		"parcel": "^2.11.0",
 		"process": "^0.11.10"
 	},
