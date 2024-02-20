@@ -96,7 +96,7 @@
 
 .nav-items li a {
     width: 95px;
-    height: 30px;
+    height: 45px;
     position: relative;
     display: flex;
     align-items: center;
@@ -523,7 +523,7 @@
 
 .body-box {
     min-height: calc(60vh - 120px);
-    background: #f2f6fc;
+    background: #f2f6fca0;
 }
 
 .search-empty {
@@ -1273,8 +1273,8 @@
     gap: 10px;
     align-items: center;
     justify-content: space-between;
-    width: 40%;
-    max-width: 125px;
+    width: 50%;
+    max-width: 155px;
 }
 
 .cart-info-name {
@@ -1337,12 +1337,14 @@
     color: #000;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.06);
     z-index: 1000;
-    width: 500px;
+    max-width: 500px;
+    width: 100%;
     height: 200px;
     border-radius: 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-around;
+    animation: .3s linear view-cart;
 }
 
 .popup-page p {
@@ -1450,15 +1452,12 @@ img {
 
 @keyframes view-cart {
     from {
-        transform: scaleY(0);
         opacity: 0;
         bottom: -50px;
     }
 
     to {
-        transform: scaleY(1);
         opacity: 1;
-        bottom: 0px;
     }
 }
 
