@@ -60,7 +60,7 @@ const AppLayout = () => {
 	// useContext ------------------------------------
 	const [user, setUser] = useState({
 		name: "Akash deep",
-		email: "ad3500476@example.com",
+		email: "ad3500476@gmail.com",
 	});
 	const [location, setLocation] = useState({
 		latitude: 28.7040592, // Delhi

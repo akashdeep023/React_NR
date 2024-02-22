@@ -21,7 +21,6 @@ const RestaurantMenu = () => {
 		distance: restaurant?.restInfo?.card?.card?.info?.sla,
 	};
 	const resAddedToCart = useSelector((store) => store?.cart);
-	console.log(resAddedToCart);
 
 	if (restaurant?.length == 0) {
 		return <ShimmerMenu />;

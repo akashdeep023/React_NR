@@ -10,11 +10,21 @@
     display: none !important;
 }
 
-/* body::-webkit-scrollbar,
+body::-webkit-scrollbar,
 .main-card::-webkit-scrollbar,
-#root::-webkit-scrollbar{
-    display: none;
-} */
+#root::-webkit-scrollbar {
+    display: initial !important;
+    background-color: #f2f6fc;
+    width: 8px;
+}
+
+body::-webkit-scrollbar-thumb,
+.main-card::-webkit-scrollbar-thumb,
+#root::-webkit-scrollbar-thumb {
+    background-color: #696969;
+    border-radius: 50px;
+}
+
 .logo {
     height: 70px;
     width: 70px;
@@ -523,7 +533,7 @@
 
 .body-box {
     min-height: calc(60vh - 120px);
-    background: #f2f6fca0;
+    background: #f2f6fc;
 }
 
 .search-empty {
@@ -607,7 +617,7 @@
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
-    margin: 10px;
+    /* margin: 10px; */
     gap: 15px;
 }
 
@@ -882,7 +892,7 @@
 
 .toaster-toast {
     color: #fff !important;
-    width: 250px;
+    width: 250px !important;
     background: #202333 !important;
 }
 
@@ -1289,7 +1299,7 @@
     border-radius: 15px;
     border: none;
     background-color: #fff;
-    color: #8a8888c0;
+    color: #1a1a1ac0;
     box-shadow: 0px 0px 5px #bbb;
     white-space: nowrap;
     font-weight: 600;
@@ -1476,7 +1486,7 @@ img {
     flex-direction: column;
     /* justify-content: center; */
     align-items: center;
-    margin: 10px;
+    /* margin: 10px; */
     gap: 15px;
     margin-top: 0px;
     background-color: #f2f6fc;
@@ -1800,6 +1810,7 @@ div.about-page div a:hover {
     from {
         opacity: 0;
         /* bottom: -50px; */
+        top: -110px;
         right: -100px;
         transform: scale(0);
     }

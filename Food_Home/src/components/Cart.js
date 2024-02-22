@@ -165,7 +165,7 @@ const Cart = () => {
 						}, 5500);
 						setTimeout(() => {
 							handleSound();
-						}, 3500);
+						}, 3000);
 						setTimeout(() => {
 							clearFoodItems();
 						}, 6000);

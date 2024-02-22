@@ -1,6 +1,6 @@
 import RestaurantCard from "./RestaurantCard";
 // import RestaurantList from "../constant";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Shimmer from "./Shimmer";
 import { Link } from "react-router-dom";
 import useAllRestaurants from "../utils/useAllRestaurants";
@@ -15,11 +15,44 @@ import {
 } from "../constant";
 // import OfflineImage from "../assets/img/Offline.png";
 import { handleScrollTop } from "../utils/helper";
+import UseAgainRestaurants from "../utils/useAgainRestaurants";
 // import UserContext from "../utils/UserContext";
+
+window.addEventListener("DOMContentLoaded", function () {
+	window.scrollTo(0, 0);
+});
 
 const Body = () => {
 	const [allRestaurants, filteredRestaurants, setFilteredRestaurants] =
 		useAllRestaurants();
+	const [againApiCall, setAgainApiCall] = useState(false);
+	const [extraRestsData, setExtraRestsData] = useState(null);
+
+	useEffect(() => {
+		const handleScroll = () => {
+			const scrollPosition = window.scrollY;
+			const viewportHeight = window.innerHeight;
+			const documentHeight = document.body.scrollHeight;
+			const distanceFromBottom =
+				documentHeight - (scrollPosition + viewportHeight);
+			if (!againApiCall) {
+				if (distanceFromBottom <= 400) {
+					console.log("Hello World");
+					setExtraRestsData([]);
+					setTimeout(() => {
+						setExtraRestsData(allRestaurants[7]);
+						setAgainApiCall(true);
+					}, 2000);
+				}
+			}
+		};
+		console.log(extraRestsData);
+
+		window.addEventListener("scroll", handleScroll);
+		return () => {
+			window.removeEventListener("scroll", handleScroll);
+		};
+	}, [againApiCall, allRestaurants]);
 
 	// Props drilling ----------------------------------------------------------------
 	// Body Component => RestaurantCard Component => <h4>{ ... }</h4>
@@ -173,7 +206,7 @@ const Body = () => {
 						<hr className="topBrandHr" />
 					</div>
 				) : null}
-
+				{console.log(allRestaurants[5])}
 				<div className="main-header-box">
 					<h2 className="main-card-title">
 						{allRestaurants[4]?.title}
@@ -207,6 +240,47 @@ const Body = () => {
 									</Link>
 								);
 							})}
+							{!extraRestsData
+								? null
+								: extraRestsData.length == 0
+								? Array(10)
+										.fill("")
+										.map((elem, idx) => {
+											return (
+												<div
+													className="shimmer card"
+													key={"shimmer-menu" + idx}
+												>
+													<div className="img-box img-shimmer"></div>
+													<div className="box-shimmer big-shimmer"></div>
+													<div className="box-shimmer"></div>
+													<div className="box-shimmer"></div>
+													<div className="box-shimmer"></div>
+												</div>
+											);
+										})
+								: extraRestsData?.map((restaurant) => {
+										return (
+											<Link
+												to={
+													"/restaurant/" +
+													restaurant?.info?.id
+												}
+												key={
+													"filters" +
+													restaurant?.info?.id
+												}
+												onClick={() =>
+													handleScrollTop()
+												}
+											>
+												<RestaurantCard
+													{...restaurant.info}
+													// user={user} // Props drilling -----------
+												/>
+											</Link>
+										);
+								  })}
 						</div>
 					) : (
 						<div className="body-box search-empty">

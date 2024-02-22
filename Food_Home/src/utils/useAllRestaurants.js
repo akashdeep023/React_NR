@@ -45,6 +45,34 @@ const useAllRestaurants = () => {
 			const unService = json?.data?.cards?.find((res) =>
 				res?.card?.card?.id?.includes("swiggy_not_present")
 			);
+			const set1 = new Set(
+				topBrand?.card?.card?.gridElements?.infoWithStyle?.restaurants.map(
+					(item) => item.info.id
+				)
+			);
+			const set2 = new Set(
+				allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants.map(
+					(item) => item.info.id
+				)
+			);
+			const combinedSet = new Set([...set1, ...set2]);
+			const allTotalRests = Array.from(combinedSet, (id) => {
+				const objInArray1 =
+					topBrand?.card?.card?.gridElements?.infoWithStyle?.restaurants.find(
+						(item) => item.info.id === id
+					);
+				const objInArray2 =
+					allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants.find(
+						(item) => item.info.id === id
+					);
+
+				return objInArray1 || objInArray2;
+			});
+			console.log(allTotalRests);
+			const additionalRests =
+				topBrand?.card?.card?.gridElements?.infoWithStyle?.restaurants.filter(
+					(item) => !set2.has(item.info.id)
+				);
 			setCity(
 				json?.data?.cards[
 					json?.data?.cards.length - 1
@@ -57,8 +85,10 @@ const useAllRestaurants = () => {
 				topBrand?.card?.card?.header, // Top Brand title
 				topBrand?.card?.card?.gridElements?.infoWithStyle?.restaurants, //20 items
 				allRestsTitle?.card?.card,
-				allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants, //9 items
+				// allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants, //9 items
+				allTotalRests, //9 items + 20 items
 				unService?.card?.card, // unServiceable
+				additionalRests || [], //20 items - 9 items
 			]);
 			setFilteredRestaurants(
 				allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants //9 items
