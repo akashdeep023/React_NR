@@ -38,9 +38,9 @@ const Body = () => {
 				if (distanceFromBottom <= 400) {
 					console.log("Hello World");
 					setExtraRestsData([]);
+					setAgainApiCall(true);
 					setTimeout(() => {
 						setExtraRestsData(allRestaurants[7]);
-						setAgainApiCall(true);
 					}, 2000);
 				}
 			}
@@ -205,7 +205,6 @@ const Body = () => {
 						<hr className="topBrandHr" />
 					</div>
 				) : null}
-				{console.log(allRestaurants[5])}
 				<div className="main-header-box">
 					<h2 className="main-card-title">
 						{allRestaurants[4]?.title}
@@ -242,7 +241,7 @@ const Body = () => {
 							{!extraRestsData
 								? null
 								: extraRestsData.length == 0
-								? Array(10)
+								? Array(allRestaurants[7]?.length)
 										.fill("")
 										.map((elem, idx) => {
 											return (
