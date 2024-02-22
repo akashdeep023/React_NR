@@ -15,7 +15,6 @@ import {
 } from "../constant";
 // import OfflineImage from "../assets/img/Offline.png";
 import { handleScrollTop } from "../utils/helper";
-import UseAgainRestaurants from "../utils/useAgainRestaurants";
 // import UserContext from "../utils/UserContext";
 
 window.addEventListener("DOMContentLoaded", function () {
