@@ -6,6 +6,12 @@ import {
 	checkValidSignUpFrom,
 } from "../utils/validate.js";
 
+import {
+	createUserWithEmailAndPassword,
+	signInWithEmailAndPassword,
+} from "firebase/auth";
+import { auth } from "../utils/firebase.js";
+
 const Login = () => {
 	const [isSignIn, setIsSignIn] = useState(true);
 	const [errorMsg, setErrorMsg] = useState(null);
@@ -22,15 +28,47 @@ const Login = () => {
 			password.current.value
 		); // Validate Form
 		setErrorMsg(message); // Set error message
+		if (message) return;
+		signInWithEmailAndPassword(
+			auth,
+			email.current.value,
+			password.current.value
+		)
+			.then((userCredential) => {
+				// Signed in
+				const user = userCredential.user;
+				console.log(user);
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				setErrorMsg(errorCode + " - " + errorMessage);
+			});
 	};
 	const handleSignUpFormValidation = () => {
 		const message = checkValidSignUpFrom(
 			fullName.current.value,
 			email.current.value,
-			password.current.value,
+			password.current.value
 		); // Validate Form
-		console.log(message);
 		setErrorMsg(message); // Set error message
+		if (message) return;
+		// Sign Up
+		createUserWithEmailAndPassword(
+			auth,
+			email.current.value,
+			password.current.value
+		)
+			.then((userCredential) => {
+				// Signed up
+				const user = userCredential.user;
+				console.log(user);
+			})
+			.catch((error) => {
+				const errorCode = error.code;
+				const errorMessage = error.message;
+				setErrorMsg(errorCode + " - " + errorMessage);
+			});
 	};
 	return (
 		<div className="bg-black/50">
@@ -42,7 +80,7 @@ const Login = () => {
 					alt="bgImg"
 				/>
 			</div>
-			<div className="w-full flex justify-center ">
+			<div className="w-full flex justify-center">
 				<form
 					className="absolute px-16 py-12 text-white font-bold w-[450px] bg-black/60 top-20 left-auto rounded-md flex flex-col gap-4"
 					onSubmit={(event) => event.preventDefault()}
@@ -73,7 +111,7 @@ const Login = () => {
 					{errorMsg && <p className="text-red-500">{errorMsg}</p>}
 					<button
 						type="submit"
-						className="rounded-sm w-full h-full p-2 my-4 bg-red-600 hover:bg-red-700 active:bg-red-900"
+						className="rounded-sm w-full h-full p-2 my-1 bg-red-600 hover:bg-red-700 active:bg-red-900"
 						onClick={
 							isSignIn
 								? handleSignInFormValidation
@@ -83,7 +121,7 @@ const Login = () => {
 						{isSignIn ? "Sign In" : "Sign Up"}
 					</button>
 					{isSignIn && (
-						<p className="text-center font-semibold">
+						<p className="text-center font-semibold cursor-pointer">
 							Forgot password?
 						</p>
 					)}
@@ -91,8 +129,11 @@ const Login = () => {
 						{isSignIn ? "New to Netflix?" : "Already registered?"}{" "}
 						<b
 							href="#"
-							className="text-white font-bold cursor-pointer"
-							onClick={toggleForm}
+							className="text-white font-bold cursor-pointer hover:underline"
+							onClick={() => {
+								toggleForm();
+								setErrorMsg(null);
+							}}
 						>
 							{isSignIn ? "Sign up now." : "Sign in now"}
 						</b>
@@ -100,7 +141,7 @@ const Login = () => {
 					<p className="font-light text-sm text-gray-300/80">
 						This page is protected by Google reCAPTCHA to ensure
 						you're not a bot.{" "}
-						<b href="#" className="text-blue-800 font-semibold">
+						<b href="#" className="text-blue-800 font-semibold hover:underline cursor-pointer">
 							Learn more.
 						</b>
 					</p>
