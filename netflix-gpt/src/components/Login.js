@@ -9,12 +9,15 @@ import {
 import {
 	createUserWithEmailAndPassword,
 	signInWithEmailAndPassword,
+	updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
 	const [isSignIn, setIsSignIn] = useState(true);
 	const [errorMsg, setErrorMsg] = useState(null);
+	const navigate = useNavigate();
 	const fullName = useRef(null);
 	const email = useRef(null);
 	const password = useRef(null);
@@ -37,7 +40,7 @@ const Login = () => {
 			.then((userCredential) => {
 				// Signed in
 				const user = userCredential.user;
-				console.log(user);
+				navigate("/browse");
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -62,7 +65,16 @@ const Login = () => {
 			.then((userCredential) => {
 				// Signed up
 				const user = userCredential.user;
-				console.log(user);
+				updateProfile(user, {
+					displayName: fullName.current.value, photoURL: "https://avatars.githubusercontent.com/u/126412088?v=4"
+				  }).then(() => {
+					// Profile updated!
+					// ...
+				  }).catch((error) => {
+					// An error occurred
+					// ...
+				  });
+				navigate("/browse")
 			})
 			.catch((error) => {
 				const errorCode = error.code;
@@ -82,7 +94,7 @@ const Login = () => {
 			</div>
 			<div className="w-full flex justify-center">
 				<form
-					className="absolute px-16 py-12 text-white font-bold w-[450px] bg-black/60 top-20 left-auto rounded-md flex flex-col gap-4"
+					className="absolute px-16 py-12 text-white font-bold w-[450px]  bg-black/60 top-24 left-auto rounded-md flex flex-col justify-start gap-5"
 					onSubmit={(event) => event.preventDefault()}
 				>
 					<h1 className="rounded-sm text-4xl font-bold text-white mb-4">
@@ -138,7 +150,7 @@ const Login = () => {
 							{isSignIn ? "Sign up now." : "Sign in now"}
 						</b>
 					</p>
-					<p className="font-light text-sm text-gray-300/80">
+					<p className="font-light text-sm text-gray-300/80 mb-24">
 						This page is protected by Google reCAPTCHA to ensure
 						you're not a bot.{" "}
 						<b href="#" className="text-blue-800 font-semibold hover:underline cursor-pointer">
