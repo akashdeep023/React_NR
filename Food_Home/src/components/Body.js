@@ -36,7 +36,6 @@ const Body = () => {
 				documentHeight - (scrollPosition + viewportHeight);
 			if (!againApiCall) {
 				if (distanceFromBottom <= 400) {
-					console.log("Hello World");
 					setExtraRestsData([]);
 					setAgainApiCall(true);
 					setTimeout(() => {
@@ -45,7 +44,6 @@ const Body = () => {
 				}
 			}
 		};
-		console.log(extraRestsData);
 
 		window.addEventListener("scroll", handleScroll);
 		return () => {

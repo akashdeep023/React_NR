@@ -65,10 +65,8 @@ const useAllRestaurants = () => {
 					allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants.find(
 						(item) => item.info.id === id
 					);
-
 				return objInArray1 || objInArray2;
 			});
-			console.log(allTotalRests);
 			const additionalRests =
 				topBrand?.card?.card?.gridElements?.infoWithStyle?.restaurants.filter(
 					(item) => !set2.has(item.info.id)
@@ -86,7 +84,7 @@ const useAllRestaurants = () => {
 				topBrand?.card?.card?.gridElements?.infoWithStyle?.restaurants, //20 items
 				allRestsTitle?.card?.card,
 				// allRests?.card?.card?.gridElements?.infoWithStyle?.restaurants, //9 items
-				allTotalRests, //9 items + 20 items
+				allTotalRests, // 9 items + 20 items
 				unService?.card?.card, // unServiceable
 				additionalRests || [], //20 items - 9 items
 			]);
