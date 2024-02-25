@@ -12,16 +12,15 @@ import {
 	updateProfile,
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
-import { useNavigate } from "react-router-dom";
 import { addUser } from "../utils/userSlice.js";
 import { useDispatch } from "react-redux";
 import Footer from "./Footer.js";
+import {APP_BG, AVATAR_LOGO} from '../utils/constants.js';
 
 const Login = () => {
 	const [isSignIn, setIsSignIn] = useState(true);
 	const [errorMsg, setErrorMsg] = useState(null);
 	const [name, setName] = useState("");
-	const navigate = useNavigate();
 	const fullName = useRef(null);
 	const email = useRef(null);
 	const password = useRef(null);
@@ -44,8 +43,7 @@ const Login = () => {
 		)
 			.then((userCredential) => {
 				// Signed in
-				const user = userCredential.user;
-				navigate("/browse");
+				// const user = userCredential.user;
 			})
 			.catch((error) => {
 				setErrorMsg("Netflix Error : " + error.code );
@@ -70,8 +68,7 @@ const Login = () => {
 				const user = userCredential.user;
 				updateProfile(user, {
 					displayName: fullName.current.value,
-					photoURL:
-						"https://avatars.githubusercontent.com/u/126412088?v=4",
+					photoURL: AVATAR_LOGO,
 				})
 					.then(() => {
 						// Profile updated!
@@ -85,7 +82,6 @@ const Login = () => {
 								photoURL: photoURL,
 							})
 						);
-						navigate("/browse");
 						// ...
 					})
 					.catch((error) => {
@@ -107,7 +103,7 @@ const Login = () => {
 			<div className="min-h-[150vh] w-full h-full">
 				<img
 					className="relative w-full min-h-[150vh] z-[-10] object-cover object-left-top"
-					src="https://assets.nflxext.com/ffe/siteui/vlv3/2e07bc25-8b8f-4531-8e1f-7e5e33938793/e4b3c14a-684b-4fc4-b14f-2b486a4e9f4e/IN-en-20240219-popsignuptwoweeks-perspective_alpha_website_large.jpg"
+					src={APP_BG}
 					alt="bgImg"
 				/>
 			</div>
