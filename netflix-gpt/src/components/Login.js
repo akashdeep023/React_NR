@@ -13,14 +13,19 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
 import { useNavigate } from "react-router-dom";
+import { addUser } from "../utils/userSlice.js";
+import { useDispatch } from "react-redux";
+import Footer from "./Footer.js";
 
 const Login = () => {
 	const [isSignIn, setIsSignIn] = useState(true);
 	const [errorMsg, setErrorMsg] = useState(null);
+	const [name, setName] = useState("");
 	const navigate = useNavigate();
 	const fullName = useRef(null);
 	const email = useRef(null);
 	const password = useRef(null);
+	const dispatch = useDispatch();
 	const toggleForm = () => {
 		// Toggle SignUp/SignIn
 		setIsSignIn(!isSignIn);
@@ -43,9 +48,7 @@ const Login = () => {
 				navigate("/browse");
 			})
 			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				setErrorMsg(errorCode + " - " + errorMessage);
+				setErrorMsg("Netflix Error : " + error.code );
 			});
 	};
 	const handleSignUpFormValidation = () => {
@@ -66,35 +69,51 @@ const Login = () => {
 				// Signed up
 				const user = userCredential.user;
 				updateProfile(user, {
-					displayName: fullName.current.value, photoURL: "https://avatars.githubusercontent.com/u/126412088?v=4"
-				  }).then(() => {
-					// Profile updated!
-					// ...
-				  }).catch((error) => {
-					// An error occurred
-					// ...
-				  });
-				navigate("/browse")
+					displayName: fullName.current.value,
+					photoURL:
+						"https://avatars.githubusercontent.com/u/126412088?v=4",
+				})
+					.then(() => {
+						// Profile updated!
+						const { uid, email, displayName, photoURL } =
+							auth.currentUser;
+						dispatch(
+							addUser({
+								uid: uid,
+								email: email,
+								displayName: displayName,
+								photoURL: photoURL,
+							})
+						);
+						navigate("/browse");
+						// ...
+					})
+					.catch((error) => {
+						// An error occurred
+						// ...
+					});
 			})
 			.catch((error) => {
-				const errorCode = error.code;
-				const errorMessage = error.message;
-				setErrorMsg(errorCode + " - " + errorMessage);
+				setErrorMsg("Netflix Error : " + error.code );
 			});
 	};
+	const handleName = (name) => {
+		name = name.charAt(0).toUpperCase() + name.slice(1)
+		setName(name);
+	}
 	return (
 		<div className="bg-black/50">
 			<Header />
-			<div className="min-h-screen w-full h-full ">
+			<div className="min-h-[150vh] w-full h-full">
 				<img
-					className="relative w-full min-h-screen z-[-10] object-cover object-left-top"
+					className="relative w-full min-h-[150vh] z-[-10] object-cover object-left-top"
 					src="https://assets.nflxext.com/ffe/siteui/vlv3/2e07bc25-8b8f-4531-8e1f-7e5e33938793/e4b3c14a-684b-4fc4-b14f-2b486a4e9f4e/IN-en-20240219-popsignuptwoweeks-perspective_alpha_website_large.jpg"
 					alt="bgImg"
 				/>
 			</div>
 			<div className="w-full flex justify-center">
 				<form
-					className="absolute px-16 py-12 text-white font-bold w-[450px]  bg-black/60 top-24 left-auto rounded-md flex flex-col justify-start gap-5"
+					className="absolute px-6 sm:px-16 py-12 text-white font-bold max-w-[450px] sm:w-[450px] h-[600px]  bg-black/70 top-24 left-auto rounded-md flex flex-col justify-start gap-5"
 					onSubmit={(event) => event.preventDefault()}
 				>
 					<h1 className="rounded-sm text-4xl font-bold text-white mb-4">
@@ -106,6 +125,8 @@ const Login = () => {
 							type="text"
 							placeholder="Full Name"
 							className="rounded-md w-full h-full p-4 font-semibold bg-black/50 border border-gray-200/50"
+							value={name}
+							onChange={(e)=>handleName(e.target.value)}
 						/>
 					)}
 					<input
@@ -150,15 +171,19 @@ const Login = () => {
 							{isSignIn ? "Sign up now." : "Sign in now"}
 						</b>
 					</p>
-					<p className="font-light text-sm text-gray-300/80 mb-24">
+					<p className="font-light text-sm text-gray-300/80 mb-16">
 						This page is protected by Google reCAPTCHA to ensure
 						you're not a bot.{" "}
-						<b href="#" className="text-blue-800 font-semibold hover:underline cursor-pointer">
+						<b
+							href="#"
+							className="text-blue-800 font-semibold hover:underline cursor-pointer"
+						>
 							Learn more.
 						</b>
 					</p>
 				</form>
 			</div>
+			<Footer/>
 		</div>
 	);
 };

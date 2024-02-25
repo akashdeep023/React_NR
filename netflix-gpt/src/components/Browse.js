@@ -3,11 +3,8 @@ import Header from "./Header";
 
 const Browse = () => {
 	return (
-		<div>
+		<div className="bg-black min-h-screen min-w-screen text-white">
 			<Header />
-			<div>
-				<img src="" alt="userLogo" />
-			</div>
 		</div>
 	);
 };
