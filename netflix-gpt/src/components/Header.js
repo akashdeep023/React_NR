@@ -4,7 +4,7 @@ import { auth } from "../utils/firebase";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { addUser, removeUser } from "../utils/userSlice";
-import {APP_LOGO} from '../utils/constants';
+import { APP_LOGO } from "../utils/constants";
 const Header = () => {
 	const navigate = useNavigate();
 	const user = useSelector((store) => store.user);
@@ -40,7 +40,7 @@ const Header = () => {
 		return () => unsubscribe();
 	}, []);
 	return (
-		<div className="absolute sm:px-[10%] px-3 filter flex justify-between items-center w-full">
+		<div className="fixed top-0 z-50 h-24 sm:px-[10%] px-3 filter flex justify-between items-center w-full bg-gradient-to-b from-black from-50%">
 			<img
 				className="w-40 sm:w-48 contrast-200"
 				src={APP_LOGO}
@@ -53,12 +53,17 @@ const Header = () => {
 						src={user.photoURL}
 						alt="userLogo"
 					/>
-					<span
-						className="ml-2 text-gray-400 font-bold cursor-pointer hover:text-white"
-						onClick={handleSignOut}
-					>
-						Logout
-					</span>
+					<div className="flex flex-col items-center">
+						<span className="ml-2 text-red-500 font-bold">
+							Hi! {user?.displayName?.split(" ")[0]}
+						</span>
+						<span
+							className="ml-2 text-gray-400 font-bold cursor-pointer hover:text-white"
+							onClick={handleSignOut}
+						>
+							Logout
+						</span>
+					</div>
 				</div>
 			)}
 		</div>
