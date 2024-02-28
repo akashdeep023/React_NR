@@ -26,7 +26,22 @@ const Section = ({ title, description, isVisibal, setIsVisible }) => {
 				)}
 			</div>
 			<p className={`section-des ${isVisibal ? "visible" : "hidden"}`}>
-				{isVisibal && description}
+				{isVisibal && (
+					<div>
+						<h4>👋Hello {description.name}</h4>
+						<p>{description.description}</p>
+						<button>
+							{description.icon}
+							<a href={description.link} target="_blank">
+								{description.social}
+							</a>
+						</button>
+						<br></br>
+						<p>{description.subDescription}</p>
+						<p>{description.msg}</p>
+						<p>[Akash Deep]</p>
+					</div>
+				)}
 			</p>
 		</div>
 	);

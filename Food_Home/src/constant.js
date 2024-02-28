@@ -34,6 +34,61 @@ export const IMG_OFFLINE_URL =
 export const IMG_RESTAURANT_NOT_URL =
 	"https://img.freepik.com/free-vector/yes-no-concept-illustration_114360-7714.jpg?w=740&t=st=1707999100~exp=1707999700~hmac=4b3929e1b820dd1850b67521bfc4b4816ca39823bf64e02e042a68d665b12749";
 
+export const CONTACT_MSG = {
+	linkedIn: {
+		name: "there!",
+		description:
+			"I'm thrilled to connect with you! If you're interested in staying updated on my projects, insights, and professional journey, feel free to visit my LinkedIn profile. Don't forget to hit that 'Follow' button to stay in the loop!",
+		subDescription: "Looking forward to connecting with you on LinkedIn!",
+		social: "Explore My LinkedIn Profile",
+		link: "https://www.linkedin.com/in/akashdeep023/",
+		msg: "Best regards,",
+		icon: "🌐",
+	},
+	facebook: {
+		name: "There!",
+		description:
+			"For more updates, interesting shares, and a glimpse into my life, consider connecting with me on Facebook! Follow or send a friend request to stay in touch.",
+		subDescription:
+			"Looking forward to connecting with you on Facebook! Feel free to drop a message or engage with the content.",
+		social: "Explore My Facebook Profile",
+		link: "https://www.facebook.com/akashdeep023",
+		msg: "Best regards,",
+		icon: "🌐",
+	},
+	instagram: {
+		name: "Friends!",
+		description:
+			"If you enjoy visual content, behind-the-scenes looks, and updates on my projects and experiences, I invite you to check out my Instagram profile! Follow along for a vibrant feed of moments and stories.",
+		subDescription:
+			"Feel free to drop a comment or DM-I love connecting with like-minded individuals!",
+		social: "Explore My Instagram Profile",
+		link: "https://www.instagram.com/mr_akashdeep_/",
+		msg: "See you on Instagram,",
+		icon: "🌐",
+	},
+	github: {
+		name: "Fellow Developers!",
+		description:
+			"If you're interested in my coding projects, contributions, and open-source work, feel free to explore my GitHub profile. Give it a star if you find something interesting, and let's connect in the coding world!",
+		subDescription: "Looking forward to collaborating with you on GitHub!",
+		social: "Explore My GitHub Profile",
+		link: "https://github.com/akashdeep023/",
+		msg: "Happy coding,",
+		icon: "🌐",
+	},
+	email: {
+		name: "There!",
+		description:
+			"If you have any questions, inquiries, or just want to say hello, I'm just an email away! Feel free to reach out, and I'll get back to you as soon as possible.",
+		subDescription: "Looking forward to hearing from you!",
+		social: "Email Now!",
+		link: "mailto: ad3500476@gmail.com",
+		msg: "Best regards,",
+		icon: "📧",
+	},
+};
+
 // RestaurantList is JSON Data for displaying cards
 const RestaurantList = [
 	{

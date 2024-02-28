@@ -43,18 +43,7 @@ const Cart = () => {
 		<div className="body-box cart-page">
 			{pay ? null : (
 				<>
-					<h1 className="cart-h">
-						Cart
-						<button
-							className="cart-clear-btn"
-							onClick={() => {
-								clearFoodItems();
-								toast.success("Cart cleared successfully");
-							}}
-						>
-							Clear Cart
-						</button>
-					</h1>
+					<h1 className="cart-h">Cart</h1>
 					<div className="cart-main">
 						<div className="cart-rest">
 							{cartItems?.restaurant && (
@@ -74,6 +63,27 @@ const Cart = () => {
 									/>
 								);
 							})}
+						</div>
+						<div className="cart-cls-add">
+							<button
+								className="cart-clear-btn"
+								onClick={() => {
+									clearFoodItems();
+									toast.success("Cart cleared successfully");
+								}}
+							>
+								Clear Cart
+							</button>
+							<button className="cart-clear-btn">
+								<Link
+									to={
+										"/restaurant/" +
+										cartItems?.restaurant?.id
+									}
+								>
+									Add More Items
+								</Link>
+							</button>
 						</div>
 						<div className="cart-bills">
 							<div className="cart-opt">

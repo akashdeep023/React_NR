@@ -26,6 +26,7 @@ const Body = () => {
 		useAllRestaurants();
 	const [againApiCall, setAgainApiCall] = useState(false);
 	const [extraRestsData, setExtraRestsData] = useState(null);
+	const [showExtraData, setShowExtraData] = useState(true);
 
 	useEffect(() => {
 		const handleScroll = () => {
@@ -211,10 +212,12 @@ const Body = () => {
 						<Search
 							allRestaurants={allRestaurants[5]}
 							setFilteredRestaurants={setFilteredRestaurants}
+							setShowExtraData={setShowExtraData}
 						/>
 						<Filter
 							Restaurant={allRestaurants[5]}
 							setRestaurant={setFilteredRestaurants}
+							setShowExtraData={setShowExtraData}
 						/>
 					</div>
 					{filteredRestaurants?.length != 0 ? (
@@ -236,47 +239,50 @@ const Body = () => {
 									</Link>
 								);
 							})}
-							{!extraRestsData
-								? null
-								: extraRestsData.length == 0
-								? Array(allRestaurants[7]?.length)
-										.fill("")
-										.map((elem, idx) => {
+							{showExtraData &&
+								(!extraRestsData
+									? null
+									: extraRestsData.length == 0
+									? Array(allRestaurants[7]?.length)
+											.fill("")
+											.map((elem, idx) => {
+												return (
+													<div
+														className="shimmer card"
+														key={
+															"shimmer-menu" + idx
+														}
+													>
+														<div className="img-box img-shimmer"></div>
+														<div className="box-shimmer big-shimmer"></div>
+														<div className="box-shimmer"></div>
+														<div className="box-shimmer"></div>
+														<div className="box-shimmer"></div>
+													</div>
+												);
+											})
+									: extraRestsData?.map((restaurant) => {
 											return (
-												<div
-													className="shimmer card"
-													key={"shimmer-menu" + idx}
+												<Link
+													to={
+														"/restaurant/" +
+														restaurant?.info?.id
+													}
+													key={
+														"filters" +
+														restaurant?.info?.id
+													}
+													onClick={() =>
+														handleScrollTop()
+													}
 												>
-													<div className="img-box img-shimmer"></div>
-													<div className="box-shimmer big-shimmer"></div>
-													<div className="box-shimmer"></div>
-													<div className="box-shimmer"></div>
-													<div className="box-shimmer"></div>
-												</div>
+													<RestaurantCard
+														{...restaurant.info}
+														// user={user} // Props drilling -----------
+													/>
+												</Link>
 											);
-										})
-								: extraRestsData?.map((restaurant) => {
-										return (
-											<Link
-												to={
-													"/restaurant/" +
-													restaurant?.info?.id
-												}
-												key={
-													"filters" +
-													restaurant?.info?.id
-												}
-												onClick={() =>
-													handleScrollTop()
-												}
-											>
-												<RestaurantCard
-													{...restaurant.info}
-													// user={user} // Props drilling -----------
-												/>
-											</Link>
-										);
-								  })}
+									  }))}
 						</div>
 					) : (
 						<div className="body-box search-empty">

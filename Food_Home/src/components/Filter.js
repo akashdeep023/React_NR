@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import {
 	findRestaurantsFast,
 	findRestaurantsOffer,
@@ -8,7 +8,7 @@ import {
 	findRestaurants300to600,
 } from "../utils/helper";
 
-const Filter = ({ Restaurant, setRestaurant }) => {
+const Filter = ({ Restaurant, setRestaurant, setShowExtraData }) => {
 	const [filter, setFilter] = useState("jack");
 	return (
 		<>
@@ -21,6 +21,7 @@ const Filter = ({ Restaurant, setRestaurant }) => {
 						filter,
 						setFilter
 					);
+					setShowExtraData(false);
 				}}
 				id={filter == "Fast" ? "filterSelected" : ""}
 			>
@@ -34,8 +35,10 @@ const Filter = ({ Restaurant, setRestaurant }) => {
 						setRestaurant,
 						"Rating",
 						filter,
-						setFilter
+						setFilter,
+						setShowExtraData
 					);
+					setShowExtraData(false);
 				}}
 				id={filter == "Rating" ? "filterSelected" : ""}
 			>
@@ -49,8 +52,10 @@ const Filter = ({ Restaurant, setRestaurant }) => {
 						setRestaurant,
 						"Offer",
 						filter,
-						setFilter
+						setFilter,
+						setShowExtraData
 					);
+					setShowExtraData(false);
 				}}
 				id={filter == "Offer" ? "filterSelected" : ""}
 			>
@@ -64,8 +69,10 @@ const Filter = ({ Restaurant, setRestaurant }) => {
 						setRestaurant,
 						"Veg",
 						filter,
-						setFilter
+						setFilter,
+						setShowExtraData
 					);
+					setShowExtraData(false);
 				}}
 				id={filter == "Veg" ? "filterSelected" : ""}
 			>
@@ -79,8 +86,10 @@ const Filter = ({ Restaurant, setRestaurant }) => {
 						setRestaurant,
 						"less300",
 						filter,
-						setFilter
+						setFilter,
+						setShowExtraData
 					);
+					setShowExtraData(false);
 				}}
 				id={filter == "less300" ? "filterSelected" : ""}
 			>
@@ -94,8 +103,10 @@ const Filter = ({ Restaurant, setRestaurant }) => {
 						setRestaurant,
 						"300to600",
 						filter,
-						setFilter
+						setFilter,
+						setShowExtraData
 					);
+					setShowExtraData(false);
 				}}
 				id={filter == "300to600" ? "filterSelected" : ""}
 			>
