@@ -15,3 +15,34 @@ export const MOVIES_OPTIONS = {
 };
 
 export const CDN_IMG_URL = "https://image.tmdb.org/t/p/w500/";
+
+export const LANGUAGE_CODE = [
+	{
+		code: "en",
+		name: "English",
+	},
+	{
+		code: "hi",
+		name: "Hindi",
+	},
+	{
+		code: "es",
+		name: "Spanish",
+	},
+	{
+		code: "ta",
+		name: "Tamil",
+	},
+	{
+		code: "te",
+		name: "Telugu",
+	},
+	{
+		code: "gu",
+		name: "Gujarati",
+	},
+	{
+		code: "bn",
+		name: "Bangla",
+	},
+];

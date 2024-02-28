@@ -23,8 +23,6 @@ const SecondaryContainer = () => {
 				title={"Upcoming Movies"}
 				movies={movies.upcomingMovies}
 			/>
-			{/* <MoviesPlayer title={"Trending Movies"} />
-			<MoviesPlayer title={"Horror Movies"} /> */}
 		</div>
 	);
 };

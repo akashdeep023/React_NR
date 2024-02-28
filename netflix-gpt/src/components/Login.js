@@ -13,9 +13,10 @@ import {
 } from "firebase/auth";
 import { auth } from "../utils/firebase.js";
 import { addUser } from "../utils/userSlice.js";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Footer from "./Footer.js";
-import {APP_BG, AVATAR_LOGO} from '../utils/constants.js';
+import { APP_BG, AVATAR_LOGO } from "../utils/constants.js";
+import lang from "../utils/langConstants.js";
 
 const Login = () => {
 	const [isSignIn, setIsSignIn] = useState(true);
@@ -24,6 +25,7 @@ const Login = () => {
 	const fullName = useRef(null);
 	const email = useRef(null);
 	const password = useRef(null);
+	const langCode = useSelector((store) => store.config.lang);
 	const dispatch = useDispatch();
 	const toggleForm = () => {
 		// Toggle SignUp/SignIn
@@ -46,7 +48,7 @@ const Login = () => {
 				// const user = userCredential.user;
 			})
 			.catch((error) => {
-				setErrorMsg("Netflix Error : " + error.code );
+				setErrorMsg("Netflix Error : " + error.code);
 			});
 	};
 	const handleSignUpFormValidation = () => {
@@ -90,19 +92,19 @@ const Login = () => {
 					});
 			})
 			.catch((error) => {
-				setErrorMsg("Netflix Error : " + error.code );
+				setErrorMsg("Netflix Error : " + error.code);
 			});
 	};
 	const handleName = (name) => {
-		name = name.charAt(0).toUpperCase() + name.slice(1)
+		name = name.charAt(0).toUpperCase() + name.slice(1);
 		setName(name);
-	}
+	};
 	return (
 		<div className="bg-black/50">
 			<Header />
-			<div className="min-h-[150vh] w-full h-full">
+			<div className="min-h-[160vh] w-full h-full">
 				<img
-					className="relative w-full min-h-[150vh] z-[-10] object-cover object-left-top"
+					className="relative w-full min-h-[160vh] z-[-10] object-cover object-left-top"
 					src={APP_BG}
 					alt="bgImg"
 				/>
@@ -113,28 +115,30 @@ const Login = () => {
 					onSubmit={(event) => event.preventDefault()}
 				>
 					<h1 className="rounded-sm text-4xl font-bold text-white mb-4">
-						{isSignIn ? "Sign In" : "Sign Up"}
+						{isSignIn
+							? lang[langCode].login.signIn
+							: lang[langCode].login.signUp}
 					</h1>
 					{!isSignIn && (
 						<input
 							ref={fullName}
 							type="text"
-							placeholder="Full Name"
+							placeholder={lang[langCode].login.name}
 							className="rounded-md w-full h-full p-4 font-semibold bg-black/50 border border-gray-200/50"
 							value={name}
-							onChange={(e)=>handleName(e.target.value)}
+							onChange={(e) => handleName(e.target.value)}
 						/>
 					)}
 					<input
 						ref={email}
 						type="text"
-						placeholder="Email Address"
+						placeholder={lang[langCode].login.email}
 						className="rounded-md w-full h-full p-4 font-semibold bg-black/50 border border-gray-200/50"
 					/>
 					<input
 						ref={password}
 						type="password"
-						placeholder="Password"
+						placeholder={lang[langCode].login.password}
 						className="rounded-md w-full h-full p-4 font-semibold bg-black/50 border border-gray-200/50"
 					/>
 					{errorMsg && <p className="text-red-500">{errorMsg}</p>}
@@ -147,15 +151,19 @@ const Login = () => {
 								: handleSignUpFormValidation
 						}
 					>
-						{isSignIn ? "Sign In" : "Sign Up"}
+						{isSignIn
+							? lang[langCode].login.signIn
+							: lang[langCode].login.signUp}
 					</button>
 					{isSignIn && (
 						<p className="text-center font-semibold cursor-pointer">
-							Forgot password?
+							{lang[langCode].login.forgot}
 						</p>
 					)}
 					<p className=" font-normal text-gray-300/80">
-						{isSignIn ? "New to Netflix?" : "Already registered?"}{" "}
+						{isSignIn
+							? lang[langCode].login.newToNet
+							: lang[langCode].login.already}{" "}
 						<b
 							href="#"
 							className="text-white font-bold cursor-pointer hover:underline"
@@ -164,7 +172,9 @@ const Login = () => {
 								setErrorMsg(null);
 							}}
 						>
-							{isSignIn ? "Sign up now." : "Sign in now"}
+							{isSignIn
+								? lang[langCode].login.signUpNow
+								: lang[langCode].login.signInNow}
 						</b>
 					</p>
 					<p className="font-light text-sm text-gray-300/80 mb-16">
@@ -174,12 +184,12 @@ const Login = () => {
 							href="#"
 							className="text-blue-800 font-semibold hover:underline cursor-pointer"
 						>
-							Learn more.
+							{lang[langCode].login.learn}
 						</b>
 					</p>
 				</form>
 			</div>
-			<Footer/>
+			<Footer />
 		</div>
 	);
 };
