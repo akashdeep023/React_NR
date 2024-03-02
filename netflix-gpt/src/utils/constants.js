@@ -9,12 +9,13 @@ export const MOVIES_OPTIONS = {
 	method: "GET",
 	headers: {
 		accept: "application/json",
-		Authorization:
-			"Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI4ZmJhMTZkMGI4YTFkNWJkOWE2NzMyNDlhYTNlYzYzNyIsInN1YiI6IjY1ZGI2Y2ZjYTI0YzUwMDE4NjEwYmJmOCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.tEviLZyVU4tNyDqxQqpL77ECe-Py_ayhjRZyPKU7Ny4",
+		Authorization: "Bearer " + process.env.REACT_APP_MOVIES_OPTIONS,
 	},
 };
 
 export const CDN_IMG_URL = "https://image.tmdb.org/t/p/w500/";
+
+export const OPAINAI_KEY = process.env.REACT_APP_OPAINAI_KEY;
 
 export const LANGUAGE_CODE = [
 	{

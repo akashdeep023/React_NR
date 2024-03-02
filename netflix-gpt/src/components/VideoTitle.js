@@ -11,7 +11,7 @@ const VideoTitle = ({ title, description }) => {
 					{title}
 				</h1>
 				<p
-					className="max-h-24 h-fit overflow-hidden text-ellipsis line-clamp-5 mb-3 text-sm text-white"
+					className="max-h-24 h-fit line-clamp-4 mb-3 text-sm text-white"
 					style={{ filter: "drop-shadow(2px 4px 1.5px black)" }}
 				>
 					{description}

@@ -12,7 +12,7 @@ const useNowPlayingMovies = () => {
 				MOVIES_OPTIONS
 			);
 			const json = await response.json();
-			console.log(json.results);
+			// console.log(json.results);
 			dispatch(addNowPlayingMovies(json.results));
 		} catch (error) {
 			console.error(error);
