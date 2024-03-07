@@ -3,7 +3,7 @@ import lang from "../utils/langConstants";
 import { useDispatch, useSelector } from "react-redux";
 import openai from "../utils/openai";
 import { MOVIES_OPTIONS } from "../utils/constants";
-import { setGptMoviesSearch } from "../utils/gptSlice";
+import { setGptMoviesSearch, setGptSearchBtnClicked } from "../utils/gptSlice";
 
 const GptSearchBar = () => {
 	const langCode = useSelector((store) => store.config.lang);
@@ -11,15 +11,26 @@ const GptSearchBar = () => {
 	const dispatch = useDispatch();
 
 	const handletmdbMoviesSearch = async (movie) => {
-		const data = await fetch(
-			`https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
-			MOVIES_OPTIONS
-		);
-		const movies = await data.json();
-		return movies.results;
+		try {
+			const data = await fetch(
+				`https://api.themoviedb.org/3/search/movie?query=${movie}&include_adult=false&language=en-US&page=1`,
+				MOVIES_OPTIONS
+			);
+			const movies = await data.json();
+			return movies.results;
+		} catch (err) {
+			console.error(err);
+		}
 	};
 
 	const handleGptMoviesSearch = async () => {
+		dispatch(setGptSearchBtnClicked());
+		dispatch(
+			setGptMoviesSearch({
+				gptSearchNames: null,
+				gptSearchMovies: null,
+			})
+		);
 		const query =
 			"Act as a Movie Recommendation system and suggest some movies for the query : " +
 			searchText.current.value +
@@ -41,25 +52,28 @@ const GptSearchBar = () => {
 		);
 	};
 	return (
-		<div className="mt-40  flex justify-center sticky top-20 z-20">
-			<form
-				className="grid grid-cols-12 w-[50%] bg-black/60 p-3 rounded-full font-normal text-lg"
-				onSubmit={(e) => e.preventDefault()}
-			>
-				<input
-					ref={searchText}
-					className="col-span-9 px-6 py-2 rounded-s-full text-center text-black outline-none"
-					type="text"
-					placeholder={lang[langCode].placeholder}
-				/>
-				<button
-					className="col-span-3 rounded-r-full bg-red-700 hover:border-red-800 active:bg-red-900 outline-none"
-					onClick={() => handleGptMoviesSearch()}
+		<>
+			<div className="h-28 sm:h-32 md:h-40"></div>
+			<div className=" flex justify-center sticky  top-[70px] md:top-20 z-30 px-2 sm:p-0">
+				<form
+					className="grid grid-cols-12 w-full sm:w-[70%] md:w-[50%] bg-black/60 p-3 rounded-full font-normal text-base sm:text-lg"
+					onSubmit={(e) => e.preventDefault()}
 				>
-					{lang[langCode].search}
-				</button>
-			</form>
-		</div>
+					<input
+						ref={searchText}
+						className="col-span-9 px-6 py-2 rounded-s-full text-center text-black outline-none"
+						type="text"
+						placeholder={lang[langCode].placeholder}
+					/>
+					<button
+						className="col-span-3 rounded-r-full bg-red-700 hover:border-red-800 active:bg-red-900 outline-none"
+						onClick={() => handleGptMoviesSearch()}
+					>
+						{lang[langCode].search}
+					</button>
+				</form>
+			</div>
+		</>
 	);
 };
 

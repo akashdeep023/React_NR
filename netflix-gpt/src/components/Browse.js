@@ -7,16 +7,17 @@ import MainContainer from "./MainContainer";
 import SecondaryContainer from "./SecondaryContainer";
 import { useSelector } from "react-redux";
 import GptContainer from "./GptContainer";
+import MovieInfo from "./MovieInfo";
 // import Footer from "./Footer";
 
 const Browse = () => {
 	const gptSearchPage = useSelector((store) => store.gpt.gptSearchPage);
+	const { page } = useSelector((store) => store.movies?.movieInfo);
 	useNowPlayingMovies();
 	usePopularMovies();
 	useTopRatedMovies();
 	useUpcomingMovies();
 	return (
-		// <div className="bg-gradient-to-b from-black min-h-screen min-w-screen text-white">
 		<div className="bg-black min-h-screen min-w-screen text-white">
 			<Header />
 			{gptSearchPage ? (
@@ -25,6 +26,18 @@ const Browse = () => {
 				<div className="">
 					<MainContainer />
 					<SecondaryContainer />
+				</div>
+			)}
+			{page && (
+				<div
+					onScroll={(event) => {
+						event.stopPropagation();
+						console.log("scrolling");
+						console.log(event);
+					}}
+					className="fixed top-0 backdrop-blur-sm p-2 w-full h-full flex items-center justify-center z-50"
+				>
+					<MovieInfo />
 				</div>
 			)}
 			{/* <Footer /> */}

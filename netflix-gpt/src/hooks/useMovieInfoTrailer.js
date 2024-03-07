@@ -1,11 +1,10 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { addTrailerVideos } from "../utils/moviesSlice";
+import { useDispatch } from "react-redux";
+import { addMovieInfoTrailer } from "../utils/moviesSlice";
 import { MOVIES_OPTIONS } from "../utils/constants";
 
-const useMovieTrailer = (videoId) => {
+const useMovieInfoTrailer = (videoId) => {
 	const dispatch = useDispatch();
-	const trailerVideos = useSelector((store) => store.movies.trailerVideos);
 	const getVideo = async () => {
 		try {
 			const response = await fetch(
@@ -19,14 +18,13 @@ const useMovieTrailer = (videoId) => {
 				(data) => data.type === "Trailer"
 			);
 			const trailer = filterData.length ? filterData[0] : data.results[0];
-			// console.log(trailer);
-			dispatch(addTrailerVideos(trailer));
+			dispatch(addMovieInfoTrailer(trailer));
 		} catch (error) {
 			console.log(error);
 		}
 	};
 	useEffect(() => {
-		!trailerVideos && getVideo();
+		getVideo();
 	}, []);
 };
-export default useMovieTrailer;
+export default useMovieInfoTrailer;

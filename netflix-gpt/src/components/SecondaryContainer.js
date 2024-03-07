@@ -6,7 +6,7 @@ const SecondaryContainer = () => {
 	const movies = useSelector((store) => store.movies);
 	if (!movies?.nowPlayingMovies) return;
 	return (
-		<div className="p-2 relative -mt-[300px] z-40">
+		<div className="px-1 sm:px-4 md:px-8 relative -mt-[10px] sm:-mt-[100px] md:-mt-[20%] z-40">
 			<MoviesPlayer
 				title={"Now Player Movies"}
 				movies={movies.nowPlayingMovies}

@@ -1,26 +1,34 @@
 import React from "react";
 import { CDN_IMG_URL } from "../utils/constants";
+import { useDispatch } from "react-redux";
+import { addMovieInfo } from "../utils/moviesSlice";
 
 const MoviesCard = ({ movies }) => {
-	// console.log(movies);
+	const dispatch = useDispatch();
+	const handleMovieInfoPage = (movie) => {
+		dispatch(addMovieInfo(movie));
+	};
 	return (
-		<div className="flex justify-start items-start gap-3 overflow-x-scroll w-full no-scrollbar-custom">
+		<div className="flex justify-start items-start gap-2 sm:gap-3 overflow-x-scroll w-full no-scrollbar-custom">
 			{movies?.map((movie) => {
 				if (!movie.poster_path) return null;
 				return (
 					<div
+						onClick={() => handleMovieInfoPage(movie)}
 						key={movie.id}
-						className="min-w-48 max-w-48 h-96 mt-2 hover:-translate-y-8 hover:scale-90 transition-all py-4"
+						className="h-72 sm:h-80 md:h-96 mt-2 hover:-translate-y-5 sm:hover:-translate-y-8 hover:scale-90 transition-all py-4"
 					>
-						<img
-							className="object-cover cursor-pointer rounded-lg w-full h-72"
-							src={CDN_IMG_URL + movie.poster_path}
-							alt={movie.original_title}
-						/>
-						<p className="text-gray-300 font-semibold text-sm line-clamp-2">
+						<div className="bg-gradient-to-r from-white rounded-lg h-52 sm:h-64 md:h-72 w-32 sm:w-40 md:w-48 ">
+							<img
+								className="object-cover cursor-pointer rounded-lg h-52 sm:h-64 md:h-72"
+								src={CDN_IMG_URL + movie.poster_path}
+								alt={movie.original_title}
+							/>
+						</div>
+						<p className="text-gray-300 font-semibold text-xs md:text-sm line-clamp-2 w-32 sm:w-40 md:w-48">
 							{movie.title}
 						</p>
-						<p className="text-gray-300 font-light text-sm">
+						<p className="text-gray-300 font-light text-xs md:text-sm">
 							{movie.release_date}
 						</p>
 					</div>
