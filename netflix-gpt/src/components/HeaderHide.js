@@ -35,16 +35,10 @@ const HeaderHide = ({ setHeaderHide }) => {
 				Hi! {user?.displayName?.split(" ")[0]}
 			</span>
 			<button
-				className="w-28 h-10 font-normal border border-gray-400 rounded-md bg-black text-gray-400  hover:bg-red-600 hover:text-white active:bg-red-950"
-				onClick={handleSignOut}
-			>
-				Logout
-			</button>
-			<button
 				className={
 					gptSearch
-						? "w-28 h-10 font-normal border border-gray-400 rounded-md bg-black text-gray-400  hover:bg-purple-600 hover:text-white active:bg-red-950"
-						: "w-28 h-10 font-normal border border-gray-400 rounded-md bg-black text-gray-400  hover:bg-teal-600 hover:text-white active:bg-teal-950"
+						? "w-28 h-10 font-normal border hover:border-gray-400 border-white rounded-md bg-gray-400/80 text-black  hover:bg-purple-600 hover:text-white active:bg-purple-950"
+						: "w-28 h-10 font-normal border hover:border-gray-400 border-white rounded-md bg-gray-400/80 text-black  hover:bg-teal-600 hover:text-white active:bg-teal-950"
 				}
 				onClick={handleGptSearchPage}
 			>
@@ -52,7 +46,7 @@ const HeaderHide = ({ setHeaderHide }) => {
 			</button>
 			{gptSearch && (
 				<select
-					className="w-28 bg-black text-gray-400 border rounded-md border-gray-400 py-2 text-center cursor-pointer outline-none"
+					className="w-28 text-black bg-gray-400/80 border rounded-md hover:border-gray-400 border-white py-2 text-center cursor-pointer outline-none"
 					onChange={handleConfigLang}
 					value={configLang}
 				>
@@ -63,6 +57,12 @@ const HeaderHide = ({ setHeaderHide }) => {
 					))}
 				</select>
 			)}
+			<button
+				className="w-28 h-10 font-normal border border-gray-400 rounded-md bg-gray-400 text-black  hover:bg-red-600 hover:text-white active:bg-red-950"
+				onClick={handleSignOut}
+			>
+				Logout
+			</button>
 		</div>
 	);
 };

@@ -7,7 +7,13 @@ const MainContainer = () => {
 	const mainMovies = useSelector((store) => store.movies?.nowPlayingMovies);
 	if (!mainMovies)
 		return (
-			<div className="bg-black text-white h-screen text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold flex justify-center items-center p-4">
+			<div className="bg-black text-white h-screen text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold flex flex-col justify-center items-center p-4">
+				<div class="loading-wave">
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+					<div class="loading-bar"></div>
+				</div>
 				<h2 className="text-center">
 					Use VPN otherwise movies won't show up...😊
 				</h2>

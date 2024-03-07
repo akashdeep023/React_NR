@@ -6,7 +6,6 @@ import useMovieInfoTrailer from "../hooks/useMovieInfoTrailer";
 
 const MovieInfo = () => {
 	const { info } = useSelector((store) => store?.movies?.movieInfo);
-	// const [toggleInfoVideo, setToggleInfoVideo] = useState(false);
 	const movieInfoTrailer = useSelector(
 		(store) => store.movies?.movieInfoTrailer
 	);
@@ -17,6 +16,13 @@ const MovieInfo = () => {
 	const handleMovieInfoPage = () => {
 		dispatch(toggleMovieInfo());
 		dispatch(setMovieInfoTrailerPage(false));
+		const body = document.body;
+		const scrollY = body.style.top;
+		body.style.width = "";
+		body.style.position = "";
+		body.style.top = "";
+		window.scrollTo(0, parseInt(scrollY || "0") * -1);
+		document.getElementById("dialog").classList.remove("show");
 	};
 	const handleMovieInfoPageVideo = () => {
 		dispatch(setMovieInfoTrailerPage(false));
@@ -27,11 +33,6 @@ const MovieInfo = () => {
 	};
 	return (
 		<div
-			id="movie-info"
-			onScroll={(event) => {
-				event.stopPropagation();
-				console.log("scrolling");
-			}}
 			className={
 				"relative bg-black mx-auto  min-h-[50%] w-[95%] sm:w-[80%] md:w-1/2 rounded-lg aspect-video border border-gray-400 overflow-y-scroll overflow-x-hidden no-scrollbar-custom"
 			}
@@ -69,7 +70,7 @@ const MovieInfo = () => {
 						</div>
 					</div>
 					<button
-						className="my-4 px-2 sm:px-3 md:px-4  py-1 sm:py-2  bg-white text-black rounded-md cursor-pointer border border-slate-500 font-semibold sm:text-base md:text-lg text-sm"
+						className="my-4 px-2 sm:px-4 md:px-6  py-1 sm:py-2  bg-white text-black rounded-md cursor-pointer border border-black font-semibold sm:text-base md:text-lg text-sm "
 						onClick={handleMovieInfoVideo}
 					>
 						Play

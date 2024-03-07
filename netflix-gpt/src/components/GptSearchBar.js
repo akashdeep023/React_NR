@@ -24,32 +24,37 @@ const GptSearchBar = () => {
 	};
 
 	const handleGptMoviesSearch = async () => {
-		dispatch(setGptSearchBtnClicked());
-		dispatch(
-			setGptMoviesSearch({
-				gptSearchNames: null,
-				gptSearchMovies: null,
-			})
-		);
-		const query =
-			"Act as a Movie Recommendation system and suggest some movies for the query : " +
-			searchText.current.value +
-			". only give me names of 5 movies, comma seperated like the example result given ahead. Example is : Koi mil gya, Hera feri, Kabhi kushi kabhi gam, Dilwale, Dune";
-		const gptSearch = await openai.chat.completions.create({
-			messages: [{ role: "user", content: query }],
-			model: "gpt-3.5-turbo",
-		});
-		const getMovies = gptSearch.choices[0].message.content.split(",");
-		const promisesMovies = getMovies.map((movie) =>
-			handletmdbMoviesSearch(movie)
-		);
-		const tmdbMoviesSearch = await Promise.all(promisesMovies);
-		dispatch(
-			setGptMoviesSearch({
-				gptSearchNames: getMovies,
-				gptSearchMovies: tmdbMoviesSearch,
-			})
-		);
+		try {
+			dispatch(setGptSearchBtnClicked());
+			dispatch(
+				setGptMoviesSearch({
+					gptSearchNames: null,
+					gptSearchMovies: null,
+				})
+			);
+			const query =
+				"Act as a Movie Recommendation system and suggest some movies for the query : " +
+				searchText.current.value +
+				". only give me names of 5 movies, comma seperated like the example result given ahead. Example is : Koi mil gya, Hera feri, Kabhi kushi kabhi gam, Dilwale, Dune";
+			const gptSearch = await openai.chat.completions.create({
+				messages: [{ role: "user", content: query }],
+				model: "gpt-3.5-turbo",
+			});
+			const getMovies = gptSearch.choices[0].message.content.split(",");
+			const promisesMovies = getMovies.map((movie) =>
+				handletmdbMoviesSearch(movie)
+			);
+			const tmdbMoviesSearch = await Promise.all(promisesMovies);
+			dispatch(
+				setGptMoviesSearch({
+					gptSearchNames: getMovies,
+					gptSearchMovies: tmdbMoviesSearch,
+				})
+			);
+		} catch (err) {
+			console.error("Please try again in 20s.");
+			alert("Please try again in 20s.");
+		}
 	};
 	return (
 		<>

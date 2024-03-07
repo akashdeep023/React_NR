@@ -29,14 +29,7 @@ const Browse = () => {
 				</div>
 			)}
 			{page && (
-				<div
-					onScroll={(event) => {
-						event.stopPropagation();
-						console.log("scrolling");
-						console.log(event);
-					}}
-					className="fixed top-0 backdrop-blur-sm p-2 w-full h-full flex items-center justify-center z-50"
-				>
+				<div className="fixed top-0 backdrop-blur-sm p-2 w-full h-full flex items-center justify-center z-50">
 					<MovieInfo />
 				</div>
 			)}

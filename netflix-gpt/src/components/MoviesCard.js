@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { CDN_IMG_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addMovieInfo } from "../utils/moviesSlice";
@@ -7,9 +7,27 @@ const MoviesCard = ({ movies }) => {
 	const dispatch = useDispatch();
 	const handleMovieInfoPage = (movie) => {
 		dispatch(addMovieInfo(movie));
+		document.getElementById("dialog").classList.add("show");
+		const scrollY =
+			document.documentElement.style.getPropertyValue("--scroll-y");
+		const body = document.body;
+		body.style.position = "fixed";
+		body.style.width = "100vw";
+		body.style.top = `-${scrollY}`;
 	};
+	useEffect(() => {
+		window.addEventListener("scroll", () => {
+			document.documentElement.style.setProperty(
+				"--scroll-y",
+				`${window.scrollY}px`
+			);
+		});
+	});
 	return (
-		<div className="flex justify-start items-start gap-2 sm:gap-3 overflow-x-scroll w-full no-scrollbar-custom">
+		<div
+			id="dialog"
+			className="flex justify-start items-start gap-2 sm:gap-3 overflow-x-scroll w-full no-scrollbar-custom"
+		>
 			{movies?.map((movie) => {
 				if (!movie.poster_path) return null;
 				return (
@@ -25,7 +43,7 @@ const MoviesCard = ({ movies }) => {
 								alt={movie.original_title}
 							/>
 						</div>
-						<p className="text-gray-300 font-semibold text-xs md:text-sm line-clamp-2 w-32 sm:w-40 md:w-48">
+						<p className="text-gray-300 font-semibold text-xs md:text-sm line-clamp-1 w-32 sm:w-40 md:w-48">
 							{movie.title}
 						</p>
 						<p className="text-gray-300 font-light text-xs md:text-sm">

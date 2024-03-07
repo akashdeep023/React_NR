@@ -7,6 +7,7 @@ const GptContant = () => {
 	const { gptSearchNames, gptSearchMovies, gptSearchBtnClicked } =
 		useSelector((store) => store.gpt);
 	if (!gptSearchBtnClicked) return null;
+
 	return (
 		<div className="min-h-full px-[4%] py-[2%]">
 			<div className=" w-full p-1  md:p-4 backdrop-blur-lg relative">
