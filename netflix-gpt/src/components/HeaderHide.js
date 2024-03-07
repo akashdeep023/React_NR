@@ -5,12 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { LANGUAGE_CODE } from "../utils/constants";
 import { toggleGptSarch } from "../utils/gptSlice";
 import { changeConfig } from "../utils/configSlice";
+import { useEffect, useRef } from "react";
 const HeaderHide = ({ setHeaderHide }) => {
 	const navigate = useNavigate();
 	const dispatch = useDispatch();
 	const user = useSelector((store) => store.user);
 	const gptSearch = useSelector((store) => store.gpt.gptSearchPage);
 	const configLang = useSelector((store) => store.config.lang);
+	const menuRef = useRef();
 	const handleSignOut = () => {
 		signOut(auth)
 			.then(() => {
@@ -29,8 +31,24 @@ const HeaderHide = ({ setHeaderHide }) => {
 		dispatch(toggleGptSarch());
 		setHeaderHide(true);
 	};
+	useEffect(() => {
+		let handler = (e) => {
+			if (!menuRef.current.contains(e.target)) {
+				setHeaderHide(true);
+				console.log(menuRef.current);
+			}
+		};
+
+		document.addEventListener("mousedown", handler);
+		return () => {
+			document.removeEventListener("mousedown", handler);
+		};
+	});
 	return (
-		<div className="absolute right-0 top-8 sm:top-10 bg-black/90 border border-gray-300 p-5 rounded-lg w-44 flex flex-col gap-4 items-center z-[1000]">
+		<div
+			ref={menuRef}
+			className="absolute right-0 top-8 sm:top-10 bg-black/90 border border-gray-300 p-5 rounded-lg w-44 flex flex-col gap-4 items-center z-[1000]"
+		>
 			<span className="w-28 text-center border-b text-white font-bold ">
 				Hi! {user?.displayName?.split(" ")[0]}
 			</span>

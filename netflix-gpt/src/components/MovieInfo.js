@@ -47,10 +47,18 @@ const MovieInfo = () => {
 						➡️{info?.title}
 					</h1>
 					<div className="flex justify-between flex-col sm:flex-row gap-2 sm:gap-4 text-xs sm:text-sm md:text-base">
-						<img
-							className="w-32 h-48 sm:w-36 sm:h-56 rounded-lg"
-							src={CDN_IMG_URL + info?.poster_path}
-						></img>
+						<div className="flex flex-row sm:flex-col sm:justify-between items-end sm:items-center gap-2 w-full h-48 sm:min-w-36 sm:h-60">
+							<img
+								className="w-32 h-48 sm:w-36 sm:h-56 rounded-lg"
+								src={CDN_IMG_URL + info?.poster_path}
+							></img>
+							<button
+								className="px-4 md:px-6 py-2  bg-white text-black rounded-md cursor-pointer border border-black font-semibold sm:text-base md:text-lg text-sm "
+								onClick={handleMovieInfoVideo}
+							>
+								Play
+							</button>
+						</div>
 						<div className="flex flex-col gap-1 sm:gap-2">
 							<p className="opacity-60">
 								<b>Language :</b> {info?.original_language}
@@ -69,12 +77,6 @@ const MovieInfo = () => {
 							</p>
 						</div>
 					</div>
-					<button
-						className="my-4 px-2 sm:px-4 md:px-6  py-1 sm:py-2  bg-white text-black rounded-md cursor-pointer border border-black font-semibold sm:text-base md:text-lg text-sm "
-						onClick={handleMovieInfoVideo}
-					>
-						Play
-					</button>
 				</div>
 			) : (
 				<>
