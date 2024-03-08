@@ -22,7 +22,6 @@ const MovieInfo = () => {
 		body.style.position = "";
 		body.style.top = "";
 		window.scrollTo(0, parseInt(scrollY || "0") * -1);
-		document.getElementById("dialog").classList.remove("show");
 	};
 	const handleMovieInfoPageVideo = () => {
 		dispatch(setMovieInfoTrailerPage(false));
@@ -46,8 +45,8 @@ const MovieInfo = () => {
 					<h1 className="text-lg sm:text-xl md:text-2xl font-bold my-2 mb-1 sm:mb-3">
 						➡️{info?.title}
 					</h1>
-					<div className="flex justify-between flex-col sm:flex-row gap-2 sm:gap-4 text-xs sm:text-sm md:text-base">
-						<div className="flex flex-row sm:flex-col sm:justify-between items-end sm:items-center gap-2 w-full h-48 sm:min-w-36 sm:h-60">
+					<div className="flex justify-start flex-col sm:flex-row gap-2 sm:gap-4 text-xs sm:text-sm md:text-base">
+						<div className="flex flex-row sm:flex-col sm:justify-start items-end sm:items-center gap-2 w-full h-48 sm:min-w-36 sm:max-w-36 sm:h-64">
 							<img
 								className="w-32 h-48 sm:w-36 sm:h-56 rounded-lg"
 								src={CDN_IMG_URL + info?.poster_path}

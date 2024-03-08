@@ -8,7 +8,7 @@ const GptContainer = () => {
 		<div>
 			<div className="min-h-screen w-full h-full absolute top-0">
 				<img
-					className="w-full min-h-screen object-cover object-left-top fixed"
+					className="w-full min-h-screen object-cover object-left-top fixed top-0"
 					src={APP_BG}
 					alt="bgImg"
 				/>

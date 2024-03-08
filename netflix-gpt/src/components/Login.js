@@ -17,6 +17,9 @@ import { useDispatch, useSelector } from "react-redux";
 import Footer from "./Footer.js";
 import { APP_BG, AVATAR_LOGO } from "../utils/constants.js";
 import lang from "../utils/langConstants.js";
+import { toast } from "react-toastify";
+import { setForgotPass } from "../utils/configSlice.js";
+import ForgotPass from "./ForgotPass.js";
 
 const Login = () => {
 	const [isSignIn, setIsSignIn] = useState(true);
@@ -26,18 +29,21 @@ const Login = () => {
 	const email = useRef(null);
 	const password = useRef(null);
 	const langCode = useSelector((store) => store.config.lang);
+	const forgotPass = useSelector((store) => store.config.forgotPass);
 	const dispatch = useDispatch();
 	const toggleForm = () => {
 		// Toggle SignUp/SignIn
 		setIsSignIn(!isSignIn);
 	};
-	const handleSignInFormValidation = () => {
+	const handleSignInFormValidation = (e) => {
 		const message = checkValidSignInFrom(
 			email.current.value,
 			password.current.value
 		); // Validate Form
 		setErrorMsg(message); // Set error message
 		if (message) return;
+		toast.loading("Wait until you SignIn");
+		e.target.disabled = true;
 		signInWithEmailAndPassword(
 			auth,
 			email.current.value,
@@ -46,12 +52,18 @@ const Login = () => {
 			.then((userCredential) => {
 				// Signed in
 				// const user = userCredential.user;
+				toast.dismiss();
+				toast.success("User has been Signed In");
+				e.target.disabled = false;
 			})
 			.catch((error) => {
-				setErrorMsg("Netflix Error : " + error.code);
+				setErrorMsg("Error : " + error.code);
+				toast.dismiss();
+				toast.error("Error : " + error.code);
+				e.target.disabled = false;
 			});
 	};
-	const handleSignUpFormValidation = () => {
+	const handleSignUpFormValidation = (e) => {
 		const message = checkValidSignUpFrom(
 			fullName.current.value,
 			email.current.value,
@@ -59,6 +71,8 @@ const Login = () => {
 		); // Validate Form
 		setErrorMsg(message); // Set error message
 		if (message) return;
+		toast.loading("Wait until you SignUp");
+		e.target.disabled = true;
 		// Sign Up
 		createUserWithEmailAndPassword(
 			auth,
@@ -71,33 +85,43 @@ const Login = () => {
 				updateProfile(user, {
 					displayName: fullName.current.value,
 					photoURL: AVATAR_LOGO,
-				})
-					.then(() => {
-						// Profile updated!
-						const { uid, email, displayName, photoURL } =
-							auth.currentUser;
-						dispatch(
-							addUser({
-								uid: uid,
-								email: email,
-								displayName: displayName,
-								photoURL: photoURL,
-							})
-						);
-						// ...
-					})
-					.catch((error) => {
-						// An error occurred
-						// ...
-					});
+				}).then(() => {
+					// Profile updated!
+					const { uid, email, displayName, photoURL } =
+						auth.currentUser;
+					dispatch(
+						addUser({
+							uid: uid,
+							email: email,
+							displayName: displayName,
+							photoURL: photoURL,
+						})
+					);
+					toast.dismiss();
+					toast.success("User has been Signed Up");
+					e.target.disabled = false;
+				});
 			})
 			.catch((error) => {
-				setErrorMsg("Netflix Error : " + error.code);
+				setErrorMsg("Error : " + error.code);
+				toast.dismiss();
+				toast.error("Error : " + error.code);
+				e.target.disabled = false;
 			});
 	};
+
 	const handleName = (name) => {
 		name = name.charAt(0).toUpperCase() + name.slice(1);
 		setName(name);
+	};
+	const handleForgotPass = () => {
+		dispatch(setForgotPass(true));
+		const scrollY =
+			document.documentElement.style.getPropertyValue("--scroll-y");
+		const body = document.body;
+		body.style.position = "fixed";
+		body.style.width = "100vw";
+		body.style.top = `-${scrollY}`;
 	};
 	return (
 		<div className="bg-black/50">
@@ -144,7 +168,7 @@ const Login = () => {
 					{errorMsg && <p className="text-red-500">{errorMsg}</p>}
 					<button
 						type="submit"
-						className="rounded-sm w-full h-full p-2 my-1 bg-red-600 hover:bg-red-700 active:bg-red-900"
+						className="rounded-sm w-full h-full p-2 my-1 bg-red-600 hover:bg-red-700 active:bg-red-900 disabled:opacity-50 disabled:cursor-not-allowed disabled:bg-gray-800"
 						onClick={
 							isSignIn
 								? handleSignInFormValidation
@@ -156,7 +180,10 @@ const Login = () => {
 							: lang[langCode].login.signUp}
 					</button>
 					{isSignIn && (
-						<p className="text-center font-semibold cursor-pointer">
+						<p
+							onClick={handleForgotPass}
+							className="text-center font-semibold cursor-pointer"
+						>
 							{lang[langCode].login.forgot}
 						</p>
 					)}
@@ -190,6 +217,11 @@ const Login = () => {
 				</form>
 			</div>
 			<Footer />
+			{forgotPass && (
+				<div className="fixed top-0 backdrop-blur-sm p-2 w-full h-full flex items-center justify-center z-50">
+					<ForgotPass />
+				</div>
+			)}
 		</div>
 	);
 };

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../utils/firebase";
 import { Link, useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ const Header = () => {
 	const dispatch = useDispatch();
 	const user = useSelector((store) => store.user);
 	const [headerhide, setHeaderHide] = useState(true);
+	const imgRef = useRef();
 
 	useEffect(() => {
 		const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -57,6 +58,7 @@ const Header = () => {
 						<i className="h-3 mt-1 opacity-50 fa-solid fa-sort-down"></i>
 					)}
 					<img
+						ref={imgRef}
 						className="h-10 w-10 ml-1 sm:h-12 sm:w-12 rounded-lg cursor-pointer contrast-200"
 						src={user.photoURL}
 						alt="userLogo"
@@ -69,7 +71,10 @@ const Header = () => {
 								: "inline-block opacity-100 scale-100 transition-all"
 						}
 					>
-						<HeaderHide setHeaderHide={setHeaderHide} />
+						<HeaderHide
+							setHeaderHide={setHeaderHide}
+							imgRef={imgRef}
+						/>
 					</div>
 				</div>
 			)}

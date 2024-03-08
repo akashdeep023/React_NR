@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { CDN_IMG_URL } from "../utils/constants";
 import { useDispatch } from "react-redux";
 import { addMovieInfo } from "../utils/moviesSlice";
@@ -7,7 +7,6 @@ const MoviesCard = ({ movies }) => {
 	const dispatch = useDispatch();
 	const handleMovieInfoPage = (movie) => {
 		dispatch(addMovieInfo(movie));
-		document.getElementById("dialog").classList.add("show");
 		const scrollY =
 			document.documentElement.style.getPropertyValue("--scroll-y");
 		const body = document.body;
@@ -15,19 +14,9 @@ const MoviesCard = ({ movies }) => {
 		body.style.width = "100vw";
 		body.style.top = `-${scrollY}`;
 	};
-	useEffect(() => {
-		window.addEventListener("scroll", () => {
-			document.documentElement.style.setProperty(
-				"--scroll-y",
-				`${window.scrollY}px`
-			);
-		});
-	});
+
 	return (
-		<div
-			id="dialog"
-			className="flex justify-start items-start gap-2 sm:gap-3 overflow-x-scroll w-full no-scrollbar-custom"
-		>
+		<div className="flex justify-start items-start gap-2 sm:gap-3 overflow-x-scroll w-full no-scrollbar-custom">
 			{movies?.map((movie) => {
 				if (!movie.poster_path) return null;
 				return (
