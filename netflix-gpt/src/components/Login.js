@@ -24,6 +24,7 @@ import ForgotPass from "./ForgotPass.js";
 const Login = () => {
 	const [isSignIn, setIsSignIn] = useState(true);
 	const [errorMsg, setErrorMsg] = useState(null);
+	const [passwordType, setPasswordType] = useState(true);
 	const [name, setName] = useState("");
 	const fullName = useRef(null);
 	const email = useRef(null);
@@ -159,12 +160,26 @@ const Login = () => {
 						placeholder={lang[langCode].login.email}
 						className="rounded-md w-full h-full p-4 font-semibold bg-black/50 border border-gray-200/50"
 					/>
-					<input
-						ref={password}
-						type="password"
-						placeholder={lang[langCode].login.password}
-						className="rounded-md w-full h-full p-4 font-semibold bg-black/50 border border-gray-200/50"
-					/>
+					<div className="relative">
+						<span
+							onClick={() => {
+								setPasswordType(!passwordType);
+							}}
+							className="absolute right-2 top-1/2 -translate-y-1/2 text-gray-200/50 cursor-pointer w-5 flex justify-center"
+						>
+							{passwordType ? (
+								<i className="fa-regular fa-eye-slash"></i>
+							) : (
+								<i className="fa-regular fa-eye"></i>
+							)}
+						</span>
+						<input
+							ref={password}
+							type={passwordType ? "password" : "text"}
+							placeholder={lang[langCode].login.password}
+							className="rounded-md w-full h-full p-4 font-semibold bg-black/50 border border-gray-200/50"
+						/>
+					</div>
 					{errorMsg && <p className="text-red-500">{errorMsg}</p>}
 					<button
 						type="submit"

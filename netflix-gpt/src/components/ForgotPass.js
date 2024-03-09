@@ -28,14 +28,14 @@ const ForgotPass = () => {
 		); // Validate Form
 		setErrorMsg(message); // Set error message
 		if (message) return;
-		toast.loading("Wait until Msg Send");
+		toast.loading("Wait for message to be sent");
 		e.target.disabled = true;
 
 		sendPasswordResetEmail(auth, email.current.value)
 			.then(() => {
 				// Password reset email sent!
 				toast.dismiss();
-				toast.success("Msg sent successfully");
+				toast.success("Message sent successfully");
 				e.target.disabled = false;
 				dispatch(setForgotPass(false));
 			})
